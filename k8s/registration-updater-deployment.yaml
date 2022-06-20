@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodc-registration-updater-deployment
+  labels:
+    app.kubernetes.io/name: NODC
+    app.kubernetes.io/component: registration-updater
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: NODC
+      app.kubernetes.io/component: registration-updater
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: NODC
+        app.kubernetes.io/component: registration-updater
+    spec:
+      volumes:
+        - name: nodc-registration-volume
+          persistentVolumeClaim:
+            claimName: nodc-registration-claim
+      containers:
+        - name: nodc-registration-updater
+          image: ghcr.io/mff-uk/sk_nodc_registration_updater:latest
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - mountPath: "/data/registration/"
+              name: nodc-registration-claim
+          env:
+            - name: WEBHOOK_REPOSITORY
+              value: "https://github.com/jakubklimek/nkod-sk-registrace"
+            - name: WEBHOOK_TOKEN
+              valueFrom:
+                secretKeyRef:
+                  name: nodc-registration-secret
+                  key: WEBHOOK_TOKEN
+

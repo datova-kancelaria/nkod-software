@@ -1,0 +1,19 @@
+{
+  "name": "sk-nodc-website",
+  "source": "src/index.html",
+  "browserslist": "> 0.5%, last 2 versions, not dead",
+  "scripts": {
+    "start": "parcel",
+    "build": "parcel build"
+  },
+  "devDependencies": {
+    "@parcel/transformer-yaml": "^2.6.0",
+    "@triply/yasgui": "^4.2.25",
+    "parcel": "^2.6.0"
+  },
+  "targets": {
+    "default": {
+      "publicUrl": "./"
+    }
+  }
+}

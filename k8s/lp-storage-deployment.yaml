@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodc-storage-deployment
+  labels:
+    app.kubernetes.io/name: NODC
+    app.kubernetes.io/component: linkedpipes.storage
+spec:
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: NODC
+      app.kubernetes.io/component: linkedpipes.storage
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: NODC
+        app.kubernetes.io/component: linkedpipes.storage
+    spec:
+      volumes:
+        - name: nodc-storage-volume
+          persistentVolumeClaim:
+            claimName: nodc-linkedpipes-claim
+      containers:
+        - name: nodc-linkedpipes-storage
+          image: linkedpipes/etl-storage:main
+          imagePullPolicy: Always
+          env:
+            - name: LP_ETL_DOMAIN
+              value: "http://localhost:8080"
+          ports:
+            - containerPort: 8083
+          volumeMounts:
+            - mountPath: "/data/lp-etl/"
+              name: nodc-storage-volume

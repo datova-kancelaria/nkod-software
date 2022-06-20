@@ -1,0 +1,29 @@
+# https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/
+apiVersion: batch/v1
+kind: CronJob
+metadata:
+  name: nodc-scheduler-cronjob
+  labels:
+    app.kubernetes.io/name: NODC
+    app.kubernetes.io/component: scheduler
+spec:
+  schedule: "42 2,13 * * *"
+  jobTemplate:
+    spec:
+      template:
+        spec:
+          volumes:
+            - name: nodc-linkedpipes-volume
+              persistentVolumeClaim:
+                claimName: nodc-linkedpipes-claim      
+          containers:
+          - name: nodc-linkedpipes-executor
+            image: ghcr.io/mff-uk/sk_nodc_scheduler:latest
+            imagePullPolicy: Always
+            env:
+              - name: WEBHOOK_REPOSITORY
+                value: "https://github.com/jakubklimek/nkod-sk-pipeline-deploy"
+            volumeMounts:
+              - mountPath: "/data/lp-etl/"
+                name: nodc-linkedpipes-volume
+          restartPolicy: OnFailure

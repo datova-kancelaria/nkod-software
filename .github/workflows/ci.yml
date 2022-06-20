@@ -1,0 +1,43 @@
+name: docker
+on:
+  push:
+    branches:
+      - 'main'
+jobs:
+  publish-docker:
+    runs-on: ubuntu-20.04
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v3
+      -
+        name: Login to Docker Registry
+        uses: docker/login-action@v2
+        with:
+          registry: ghcr.io
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      -
+        name: scheduler
+        uses: docker/build-push-action@v3
+        with:
+          context: ./components/scheduler
+          push: true
+          tags: mff-uk/sk_nodc_scheduler:latest
+      -
+        name: registration-updater
+        uses: docker/build-push-action@v3
+        with:
+          context: ./components/registration-updater
+          push: true
+          tags: mff-uk/sk_nodc_registration_updater:latest
+      -
+        name: website
+        uses: docker/build-push-action@v3
+        with:
+          context: ./components/website
+          push: true
+          tags: mff-uk/sk_nodc_website:latest
+
+
+

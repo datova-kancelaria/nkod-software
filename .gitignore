@@ -1,0 +1,5 @@
+.*
+node_modules
+dist
+
+graphdb-free-9.11.1-dist.zip
