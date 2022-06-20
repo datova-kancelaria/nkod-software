@@ -27,6 +27,8 @@ jobs:
           context: ./components/scheduler/
           push: true
           tags: mff-uk/sk_nodc_scheduler:latest
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
       -
         name: Publish registration-updater
         uses: docker/build-push-action@v3
