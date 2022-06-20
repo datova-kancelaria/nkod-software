@@ -21,21 +21,21 @@ jobs:
         name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
       -
-        name: scheduler
+        name: Publish scheduler
         uses: docker/build-push-action@v3
         with:
           context: ./components/scheduler/
           push: true
           tags: mff-uk/sk_nodc_scheduler:latest
       -
-        name: registration-updater
+        name: Publish registration-updater
         uses: docker/build-push-action@v3
         with:
           context: ./components/registration-updater/
           push: true
           tags: mff-uk/sk_nodc_registration_updater:latest
       -
-        name: website
+        name: Publish website
         uses: docker/build-push-action@v3
         with:
           context: ./components/website/
