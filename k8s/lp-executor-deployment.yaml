@@ -37,4 +37,4 @@ spec:
             - mountPath: "/data/lp-etl/"
               name: nodc-executor-volume
             - mountPath: "/data/registration/"
-              name: nodc-registration-claim
+              name: nodc-registration-volume
