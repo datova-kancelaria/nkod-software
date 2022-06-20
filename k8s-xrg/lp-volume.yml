@@ -1,0 +1,19 @@
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: linkedpipes-volume
+  labels:
+    app.kubernetes.io/name: NODC
+spec:
+  accessModes:
+    - ReadWriteOnce
+  capacity:
+    storage: 4Gi
+  claimRef:
+    apiVersion: v1
+    kind: PersistentVolumeClaim
+    name: nodc-linkedpipes-claim
+    namespace: default
+  hostPath:
+    path: /data/linkedpipes/
+    type: DirectoryOrCreate
