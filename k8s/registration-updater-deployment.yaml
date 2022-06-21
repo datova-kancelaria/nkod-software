@@ -29,7 +29,7 @@ spec:
             - containerPort: 80
           volumeMounts:
             - mountPath: "/data/registration/"
-              name: nodc-registration-claim
+              name: nodc-registration-volume
           env:
             - name: WEBHOOK_REPOSITORY
               value: "https://github.com/jakubklimek/nkod-sk-registrace"
