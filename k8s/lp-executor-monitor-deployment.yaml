@@ -28,6 +28,8 @@ spec:
           env:
             - name: LP_ETL_DOMAIN
               value: "http://localhost:8080"
+            - name: LP_ETL_EXECUTOR_URL
+              value: "http://nodc-executor:8085"
           ports:
             - containerPort: 8081
           volumeMounts:

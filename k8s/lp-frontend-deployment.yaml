@@ -24,5 +24,9 @@ spec:
           env:
             - name: LP_ETL_DOMAIN
               value: "http://localhost:8080"
+            - name: LP_ETL_MONITOR_URL
+              value: "http://nodc-executor-monitor:8081"
+            - name: LP_ETL_STORAGE_URL
+              value: "http://nodc-storage:8083"
           ports:
             - containerPort: 8080

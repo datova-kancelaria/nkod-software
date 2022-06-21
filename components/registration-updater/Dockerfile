@@ -3,9 +3,15 @@ FROM php:7.4.30-apache-buster
 RUN apt-get update \
  && apt-get -y --no-install-recommends install git
 
+RUN addgroup --gid 5987 "nodc" \
+    && useradd --gid "nodc" --uid 5987 "nodc"
+
 COPY ./www/webhook.php /var/www/html/
 COPY ./update-registrations.sh /opt/
-RUN chmod u+x /opt/update-registrations.sh
+
+RUN chown 5987:5987 /opt/update-registrations.sh \ 
+    && chmod u+xs /opt/update-registrations.sh \
+    && chmod a+x /opt/update-registrations.sh
 
 # The output must be redirected to file or another output stream. This allows
 # PHP to execute the command in background.
