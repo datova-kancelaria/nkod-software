@@ -68,7 +68,7 @@ $data_ok = array_matches($data, $required_data, '$data');
 closelog();
 if ($headers_ok && $data_ok) {
   // Assume long running process here, so we do not wait for it to end.
-  exec($command);
+  shell_exec($command);
   http_response_code(200);
 } else {
   http_response_code(403);

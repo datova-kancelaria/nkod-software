@@ -4,7 +4,7 @@ RUN apt-get update \
  && apt-get -y --no-install-recommends install git
 
 RUN addgroup --gid 5987 "nodc" \
-    && useradd --gid "nodc" --uid 5987 "nodc"
+    && usermod -a -G nodc www-data
 
 COPY ./www/webhook.php /var/www/html/
 COPY ./update-registrations.sh /opt/
