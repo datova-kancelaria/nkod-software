@@ -34,3 +34,5 @@ spec:
           volumeMounts:
             - mountPath: "/opt/graphdb/home"
               name: nodc-graphdb-volume
+      imagePullSecrets:
+        - name: regcred
