@@ -9,6 +9,8 @@ metadata:
 spec:
   schedule: "17 2,13 * * *"
   # https://crontab.guru/
+  failedJobsHistoryLimit: 2
+  successfulJobsHistoryLimit: 3
   jobTemplate:
     spec:
       template:
