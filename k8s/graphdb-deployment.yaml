@@ -30,7 +30,7 @@ spec:
           image: xrgk8s.projekty.ms.mff.cuni.cz:18079/sknodc_graphdb
           imagePullPolicy: Always
           ports:
-            - containerPort: 8087
+            - containerPort: 7200
           volumeMounts:
             - mountPath: "/opt/graphdb/home"
               name: nodc-graphdb-volume

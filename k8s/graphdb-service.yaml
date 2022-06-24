@@ -12,6 +12,6 @@ spec:
     app.kubernetes.io/component: graphdb
   ports:
   - protocol: TCP
-    targetPort: 8087
-    port: 8087
+    targetPort: 7200
+    port: 7200
 
