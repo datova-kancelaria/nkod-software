@@ -24,6 +24,9 @@ spec:
         - name: nodc-registration-volume
           persistentVolumeClaim:
             claimName: nodc-registration-claim
+        - name: nodc-website-volume
+          persistentVolumeClaim:
+            claimName: nodc-website-claim
       containers:
         - name: nodc-linkedpipes-executor
           image: linkedpipes/etl-executor:main
@@ -33,6 +36,16 @@ spec:
               value: "http://localhost:8080"
             - name: LP_ETL_STORAGE_URL
               value: "http://nodc-storage:8083"
+            - name: LP_ETL_GRAPHDB_USER
+              value: lp-etl
+            - name: LP_ETL_GRAPHDB_PASS
+              valueFrom:
+                secretKeyRef:
+                  name: nodc-secret
+                  key: GRAPHDB_PASSWORD
+                  optional: false
+            - name: LP_ETL_GRAPHDB_URL
+              value: "http://nodc-graphdb:7200"
           ports:
             - containerPort: 8085
           volumeMounts:
@@ -40,3 +53,5 @@ spec:
               name: nodc-executor-volume
             - mountPath: "/data/registration/"
               name: nodc-registration-volume
+            - mountPath: "/data/website/"
+              name: nodc-website-volume

@@ -36,6 +36,6 @@ spec:
             - name: WEBHOOK_TOKEN
               valueFrom:
                 secretKeyRef:
-                  name: nodc-registration-secret
-                  key: WEBHOOK_TOKEN
+                  name: nodc-secret
+                  key: REGISTRATION_WEBHOOK_TOKEN
 

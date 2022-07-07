@@ -13,7 +13,7 @@ function createYasgui() {
   // https://triply.cc/docs/yasgui-api
   yasgui = new Yasgui(document.getElementById("yasgui"), {
     "requestConfig": { 
-      "endpoint": "/api/sparql" 
+      "endpoint": "./api/sparql" 
     },
     "copyEndpointOnNewTab": false,
   });  

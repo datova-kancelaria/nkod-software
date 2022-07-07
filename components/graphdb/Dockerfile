@@ -2,10 +2,10 @@
 # https://hub.docker.com/r/ontotext/graphdb/
 
 FROM debian:bookworm-20220527
-ENV GRAPHDB_URL="./graphdb-free-9.11.1-dist.zip"
+ARG GRAPHDB_URL="./graphdb-free-9.11.1-dist.zip"
 
 RUN apt-get update \
- && apt-get -y --no-install-recommends install openjdk-17-jdk unzip
+ && apt-get -y --no-install-recommends install openjdk-17-jdk unzip apache2-utils
 
 ADD ${GRAPHDB_URL} /tmp
 
@@ -13,10 +13,25 @@ WORKDIR /opt/graphdb
 RUN unzip /tmp/graphdb-*.zip && \
     rm /tmp/graphdb-*.zip && \
     mv ./graphdb-* ./dist && \
-    mkdir -p ./home
+    mkdir -p ./home 
+
+COPY ./conf /opt/graphdb/home/conf
+COPY ./configs /opt/graphdb/home/configs
+COPY ./work /opt/graphdb/home/work
+COPY ./repositories /opt/graphdb/home/repositories
 
 ENV PATH=/opt/graphdb/dist/bin:$PATH
 
-ENTRYPOINT ["/opt/graphdb/dist/bin/graphdb", "-Dgraphdb.home=/opt/graphdb/home"]
+WORKDIR /opt/
+
+COPY ./entrypoint.sh ./
+RUN chmod u+x entrypoint.sh
+
+# Single quotes to prevent substitution, also you have to change this.
+ENV GRAPHDB_ADMIN_PASSWORD 'admin'
+ENV GRAPHDB_USER lp-etl 
+ENV GRAPHDB_PASSWORD 'lp-etl'
+
+CMD ["/opt/entrypoint.sh"]
 
 EXPOSE 7200
