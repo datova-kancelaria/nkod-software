@@ -14,7 +14,7 @@ RUN chmod +x ./update-and-run-pipeline.sh \
 
 USER nodc
 
-ENV $STORAGE_REPOSITORY=""
+ENV STORAGE_REPOSITORY=""
 ENV POST_URL=""
 
 ENTRYPOINT ["/opt/scheduler/update-and-run-pipeline.sh > /data/lp-etl/scheduler.log"]
