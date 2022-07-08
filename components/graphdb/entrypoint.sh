@@ -1,4 +1,4 @@
-# !/bin/bash
+#!/bin/bash
 
 # Hash passwords.
 GRAPHDB_ADMIN_PASSWORD_BCRYPT=$(htpasswd -bnBC 10 "" $GRAPHDB_ADMIN_PASSWORD | tr -d ':\n')
