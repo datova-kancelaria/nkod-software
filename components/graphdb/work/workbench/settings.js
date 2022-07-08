@@ -32,6 +32,9 @@
   "properties" : {
     "current.location" : "",
     "security.enabled" : "true"
+    "security.free.access" : "true",
+    "security.free.access.authorities" : "READ_REPO_nodc",
+    "security.free.access.settings" : "DEFAULT_INFERENCE=false,DEFAULT_VIS_GRAPH_SCHEMA=true,DEFAULT_SAMEAS=false,IGNORE_SHARED_QUERIES=false,EXECUTE_COUNT=true"
   },
   "user_queries" : {
     "admin" : { },
