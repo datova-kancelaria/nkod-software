@@ -15,4 +15,9 @@ sed -i \
 mkdir -p /data/graphdb
 cp -r /opt/graphdb/home/repositories/ /data/graphdb/
 
+# Remove the log, we know we are the only instance and it seems
+# like the lock is not always removed.
+rm -rf /data/graphdb/repositories/lock
+
+# Start the service with given home directory.
 graphdb -Dgraphdb.home=/opt/graphdb/home
