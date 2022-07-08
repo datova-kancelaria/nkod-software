@@ -37,8 +37,6 @@ spec:
               value: "jakubklimek/nkod-sk-registrace"
             - name: WEBHOOK_REPOSITORY
               value: "https://github.com/jakubklimek/nkod-sk-registrace.git"
-            - name: WEBHOOK_BRANCH
-              value: main
             - name: WEBHOOK_TOKEN
               valueFrom:
                 secretKeyRef:
