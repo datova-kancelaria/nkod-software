@@ -8,8 +8,8 @@ cd /tmp/storage/
 git clone $STORAGE_REPOSITORY ./
 
 echo "Moving data to storage ..."
-cp -r ./pipelines /data/lp-etl/storage/pipelines
-cp -r ./tmplates /data/lp-etl/storage/tmplates
+cp -r ./pipelines /data/lp-etl/storage/
+cp -r ./templates /data/lp-etl/storage/
 
 echo "Removing tmporary data"
 rm -rf /tmp/storage/
