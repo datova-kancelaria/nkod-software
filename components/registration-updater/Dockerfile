@@ -18,7 +18,9 @@ RUN chown 5987:5987 /opt/update-registrations.sh \
 # See https://www.php.net/manual/en/function.exec.php
 ENV WEBHOOK_CMD="/opt/update-registrations.sh > /dev/null &"
 ENV WEBHOOK_TOKEN=""
-ENV WEBHOOK_BRANCH="main"
-ENV WEBHOOK_REPOSITORY=""
+ENV WEBHOOK_BRANCH=""
+ENV WEBHOOK_REPOSITORY_NAME=""
+
+jakubklimek/nkod-sk-registrace
 
 EXPOSE 80

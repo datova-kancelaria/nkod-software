@@ -31,8 +31,10 @@ spec:
             - mountPath: "/data/registration/"
               name: nodc-registration-volume
           env:
-            - name: WEBHOOK_REPOSITORY
-              value: "https://github.com/jakubklimek/nkod-sk-registrace"
+            - name: WEBHOOK_BRANCH
+              value: "refs/heads/main"
+            - name: WEBHOOK_REPOSITORY_NAME
+              value: "jakubklimek/nkod-sk-registrace"
             - name: WEBHOOK_TOKEN
               valueFrom:
                 secretKeyRef:

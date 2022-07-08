@@ -15,7 +15,7 @@ $signature = hash_hmac('sha1', $post_data, $secret);
 $required_data = array(
   'ref' => $_ENV['WEBHOOK_BRANCH'],
   'repository' => array(
-    'full_name' => $_ENV['WEBHOOK_REPOSITORY'],
+    'full_name' => $_ENV['WEBHOOK_REPOSITORY_NAME'],
   ),
 );
 
@@ -45,7 +45,7 @@ function array_matches($actual, $expected, $name = 'array')
         syslog(LOG_INFO, "Type mismatch: $key");
         $ret = false;
       } else if (!fnmatch($value, $actual[$key])) {
-        syslog(LOG_INFO, "Unexpected value: $key={$actual[$key]}");
+        syslog(LOG_INFO, "For $key expected $value but get: {$actual[$key]}");
         $ret = false;
       }
     }
