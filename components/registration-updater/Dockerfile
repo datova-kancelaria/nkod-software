@@ -21,6 +21,4 @@ ENV WEBHOOK_TOKEN=""
 ENV WEBHOOK_BRANCH=""
 ENV WEBHOOK_REPOSITORY_NAME=""
 
-jakubklimek/nkod-sk-registrace
-
 EXPOSE 80
