@@ -12,7 +12,7 @@ cp -r ./pipelines /data/lp-etl/storage/pipelines
 cp -r ./tmplates /data/lp-etl/storage/tmplates
 
 echo "Removing tmporary data"
-rm -r cd /tmp/storage/
+rm -rf /tmp/storage/
 
 # Execute a POST to given URL to start the execution. 
 # This may actually fail for the first time as the storage

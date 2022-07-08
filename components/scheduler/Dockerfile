@@ -1,7 +1,7 @@
 FROM debian:buster-slim
 
 RUN apt-get update \
- && apt-get -y --no-install-recommends install git curl
+ && apt-get -y --no-install-recommends install git curl ca-certificates
 
 RUN addgroup --gid 5987 "nodc" \
     && useradd --gid "nodc" --uid 5987 "nodc"
@@ -17,4 +17,4 @@ USER nodc
 ENV STORAGE_REPOSITORY=""
 ENV POST_URL=""
 
-ENTRYPOINT ["/opt/scheduler/update-and-run-pipeline.sh"]
+CMD ["/opt/scheduler/update-and-run-pipeline.sh"]
