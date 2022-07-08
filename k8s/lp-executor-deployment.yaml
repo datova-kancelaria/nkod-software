@@ -36,6 +36,8 @@ spec:
               value: "http://localhost:8080"
             - name: LP_ETL_STORAGE_URL
               value: "http://nodc-storage:8083"
+            - name: LP_ETL_INSTANCE_URL
+              value: "http://nodc-frontend:8080"
             - name: LP_ETL_GRAPHDB_USER
               value: lp-etl
             - name: LP_ETL_GRAPHDB_PASS
