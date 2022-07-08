@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo " New run started: $(date)" 
+echo "New run started: $(date)" 
 
 echo "Checking out data ..."
 mkdir -p /tmp/storage/
