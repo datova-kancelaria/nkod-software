@@ -19,6 +19,7 @@ RUN chown 5987:5987 /opt/update-registrations.sh \
 ENV WEBHOOK_CMD="/opt/update-registrations.sh > /dev/null &"
 ENV WEBHOOK_TOKEN=""
 ENV WEBHOOK_REF=""
+ENV WEBHOOK_REPOSITORY=""
 ENV WEBHOOK_REPOSITORY_NAME=""
 
 EXPOSE 80
