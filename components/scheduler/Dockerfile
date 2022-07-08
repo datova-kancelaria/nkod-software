@@ -6,7 +6,6 @@ RUN apt-get update \
 RUN addgroup --gid 5987 "nodc" \
     && useradd --gid "nodc" --uid 5987 "nodc"
 
-
 WORKDIR /opt/scheduler
 COPY ./update-and-run-pipeline.sh ./
 
@@ -15,4 +14,7 @@ RUN chmod +x ./update-and-run-pipeline.sh \
 
 USER nodc
 
-ENTRYPOINT ["/opt/scheduler/update-and-run-pipeline.sh"]
+ENV $STORAGE_REPOSITORY=""
+ENV POST_URL=""
+
+ENTRYPOINT ["/opt/scheduler/update-and-run-pipeline.sh > /data/lp-etl/scheduler.log"]

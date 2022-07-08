@@ -24,8 +24,10 @@ spec:
             image: ghcr.io/mff-uk/sk_nodc_scheduler:latest
             imagePullPolicy: Always
             env:
-              - name: WEBHOOK_REPOSITORY
+              - name: STORAGE_REPOSITORY
                 value: "https://github.com/jakubklimek/nkod-sk-pipeline-deploy"
+              - name: POST_URL
+                value: "http://nodc-frontend:8080/api/v1/executions?pipeline=https://sk-nkod.opendata.cz/etl/resources/pipelines/1651823973959"
             volumeMounts:
               - mountPath: "/data/lp-etl/"
                 name: nodc-linkedpipes-volume
