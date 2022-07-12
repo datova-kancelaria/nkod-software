@@ -15,6 +15,7 @@ RUN chmod +x ./update-and-run-pipeline.sh \
 USER nodc
 
 ENV STORAGE_REPOSITORY=""
-ENV POST_URL=""
+ENV RELOAD_URL=""
+ENV EXECUTE_PIPELINE_URL=""
 
 CMD ["/opt/scheduler/update-and-run-pipeline.sh"]
