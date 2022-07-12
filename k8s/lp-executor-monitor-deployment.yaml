@@ -31,7 +31,7 @@ spec:
             - name: LP_ETL_EXECUTOR_URL
               value: "http://nodc-executor:8085"
             - name: LP_ETL_EXECUTION_HISTORY_COUNT_LIMIT
-              value: 3
+              value: "3"
           ports:
             - containerPort: 8081
           volumeMounts:
