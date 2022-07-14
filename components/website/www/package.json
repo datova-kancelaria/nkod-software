@@ -7,9 +7,8 @@
     "build": "parcel build"
   },
   "devDependencies": {
-    "@parcel/transformer-yaml": "^2.6.0",
-    "@triply/yasgui": "^4.2.25",
-    "parcel": "^2.6.0"
+    "@parcel/transformer-yaml": "^2.6.2",
+    "parcel": "^2.6.2"
   },
   "targets": {
     "default": {

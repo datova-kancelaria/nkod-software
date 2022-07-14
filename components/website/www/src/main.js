@@ -1,6 +1,4 @@
-import Yasgui from "@triply/yasgui";
 import storedQueries from "./sparql-queries.yaml"
-// import "@triply/yasgui/build/yasgui.min.css";
 
 let yasgui;
 
@@ -16,12 +14,11 @@ function createYasgui() {
       "endpoint": "./api/sparql" 
     },
     "copyEndpointOnNewTab": false,
-  });  
+  });
 }
 
 function buildQueryList(language) {
   const container = document.getElementById("queries");
-  console.log(storedQueries)
   for (const item of storedQueries.content) {
     const name = document.createElement("div");
     name.classList.add("name");

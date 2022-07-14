@@ -1,6 +1,6 @@
 /* Disable endpoint selector. */
 .yasgui .autocompleteWrapper {
-  /* display: none !important; */
+  display: none !important;
 }
 
 #queries {
