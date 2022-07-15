@@ -4,15 +4,33 @@
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "scripts": {
     "start": "parcel",
+    "postinstall": "copy-files-from-to",
     "build": "parcel build"
   },
   "devDependencies": {
+    "@id-sk/frontend": "^2.10.0",
+    "@parcel/transformer-sass": "^2.6.2",
     "@parcel/transformer-yaml": "^2.6.2",
+    "copy-files-from-to": "^3.2.2",
     "parcel": "^2.6.2"
   },
   "targets": {
     "default": {
       "publicUrl": "./"
     }
-  }
+  },
+  "copyFiles": [
+    {
+      "from": "/assets/**/*",
+      "to": "./src/assets/"
+    },
+    {
+      "from": "./node_modules/@id-sk/frontend/govuk/assets/**/*",
+      "to": "./src/assets/"
+    },
+    {
+      "from": "./node_modules/@id-sk/frontend/idsk/assets/**/*",
+      "to": "./src/assets"
+    }
+  ]
 }

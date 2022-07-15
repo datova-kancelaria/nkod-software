@@ -1,0 +1,16 @@
+/* Disable endpoint selector. */
+.yasgui {
+
+  .autocompleteWrapper {
+    display: none !important;
+  }
+
+  .controlbar {
+    display: none !important;
+  }
+
+  .yasr_tryQuery {
+    display: none !important;
+  }
+  
+}

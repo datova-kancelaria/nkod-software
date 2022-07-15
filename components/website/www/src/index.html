@@ -1,29 +1,69 @@
 <!doctype html>
-<html lang="sk">
+<html lang="sk" class="govuk-template">
+
 <head>
-  <meta charset="UTF-8"/>
+  <meta charset="UTF-8" />
   <title>data.gov.sk/sparql</title>
-  <link rel="stylesheet" href="./styles.css" />  
   <link href="https://unpkg.com/@triply/yasgui/build/yasgui.min.css" rel="stylesheet" type="text/css" />
   <script src="https://unpkg.com/@triply/yasgui/build/yasgui.min.js"></script>
+  <link rel="stylesheet" href="./styles.scss" />
 </head>
-<body>
-  <header>
-    <h1>data.gov.sk/sparql</h1>
+
+<body class="govuk-template__body">
+
+  <header class="idsk-header-web " data-module="idsk-header-web">
+    <div class="idsk-header-web__tricolor"></div>
+    <div class="idsk-header-web__brand ">
+      <div class="govuk-width-container">
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-full">
+            <div class="idsk-header-web__brand-gestor">
+              <span class="govuk-body-s idsk-header-web__brand-gestor-text">
+                <b>znalosti.gov.sk</b>
+              </span>
+            </div>
+            <div class="idsk-header-web__brand-spacer"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="idsk-header-web__main">
+      <div class="govuk-width-container">
+        <div class="govuk-grid-row">
+          <div class="govuk-grid-column-full">
+            <div class="idsk-header-web__main-headline"><a href="/" title="Odkaz na úvodnú stránku">
+                <img src="../assets/images/znalosti-logo3.svg" alt="ID-SK Frontend"
+                  class="idsk-header-web__main-headline-logo">
+                <h2 class="govuk-heading-m">Znalostný graf údajov verejnej správy</h2>
+              </a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="idsk-header-web__nav--divider"></div>
+
   </header>
-  <main>
-    <section>
-      <h2>Príklady dotazov</h2>
-      <ul id="queries">
-      </ul>
-    </section>
-    <section>
-      <div id="yasgui"></div>
-    </section>
+
+  <main class="govuk-main-wrapper govuk-body" id="main-content" role="main">
+    <div class="govuk-width-container idsk-block-centered">
+      <section>
+        <h2>Príklady dotazov</h2>
+        <ul id="queries">
+        </ul>
+      </section>
+      <section>
+        <h2>Zadaj SPARQL dotaz</h2>
+        <div id="yasgui"></div>
+      </section>
+    </div>
   </main>
-  <footer>
+  <footer class="idsk-footer">
 
   </footer>
   <script type="module" src="./main.js"></script>
 </body>
+
 </html>

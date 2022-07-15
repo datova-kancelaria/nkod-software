@@ -42,3 +42,4 @@ function setQueryToActiveTab(query) {
     tab.yasqe.setValue(query);
   }
 }
+

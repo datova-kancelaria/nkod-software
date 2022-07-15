@@ -1,0 +1,17 @@
+@import "@id-sk/frontend/idsk/overrides/_colours-applied.scss";
+
+#queries {
+  list-style-type: none;
+  padding-inline-start: 0;
+
+  li {
+    margin: 1rem;
+
+    .name {
+      cursor: pointer;
+      color: $govuk-link-colour;
+    }
+
+  }
+
+}
