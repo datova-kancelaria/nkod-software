@@ -2,7 +2,7 @@
 # https://hub.docker.com/r/ontotext/graphdb/
 
 FROM debian:bookworm-20220527
-ARG GRAPHDB_URL="./graphdb-free-9.11.1-dist.zip"
+ARG GRAPHDB_URL="./graphdb-free-10.0.0-dist.zip"
 
 RUN apt-get update \
  && apt-get -y --no-install-recommends install openjdk-17-jdk unzip apache2-utils
@@ -31,6 +31,7 @@ RUN chmod u+x entrypoint.sh
 ENV GRAPHDB_ADMIN_PASSWORD 'admin'
 ENV GRAPHDB_USER lp-etl 
 ENV GRAPHDB_PASSWORD 'lp-etl'
+ENV GRAPHDB_DISTINCT_THRESHOLD 128m
 
 CMD ["/opt/entrypoint.sh"]
 

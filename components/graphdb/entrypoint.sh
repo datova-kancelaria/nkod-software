@@ -20,4 +20,4 @@ cp -r /opt/graphdb/home/repositories/ /data/graphdb/
 rm -rf /data/graphdb/repositories/lock
 
 # Start the service with given home directory.
-graphdb -Dgraphdb.home=/opt/graphdb/home
+graphdb -Dgraphdb.home=/opt/graphdb/home -Ddefault.min.distinct.threshold=$GRAPHDB_DISTINCT_THRESHOLD
