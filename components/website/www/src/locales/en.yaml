@@ -1,0 +1,12 @@
+html:
+  language: en
+  title: data.gov.sk/sparql
+header:  
+  gestor: znalosti.gov.sk
+  headline: Knowledge graph of public administration data
+  open-lang-menu: Expand the language menu
+  close-lang-menu: Hide language menu
+  active-language: English
+main:
+  query-examples: Examples of queries
+  enter-sparql-query: Enter a SPARQL query

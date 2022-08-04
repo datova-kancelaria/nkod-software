@@ -1,18 +1,20 @@
 {
   "name": "sk-nodc-website",
-  "source": "src/index.html",
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "scripts": {
-    "start": "parcel",
+    "start": "parcel ./i18n/**/*.html",
     "postinstall": "copy-files-from-to",
-    "build": "parcel build"
+    "i18n": "static-i18n -l sk -i sk -i de -i en -i hu -i uk --fileFormat yaml src",
+    "build": "parcel build --no-source-maps ./i18n/**/*.html && node postbuild.js"
   },
   "devDependencies": {
     "@id-sk/frontend": "^2.10.0",
     "@parcel/transformer-sass": "^2.6.2",
     "@parcel/transformer-yaml": "^2.6.2",
     "copy-files-from-to": "^3.2.2",
-    "parcel": "^2.6.2"
+    "parcel": "^2.6.2",
+    "replace-in-file": "^6.3.5",
+    "static-i18n": "^0.2.10"
   },
   "targets": {
     "default": {

@@ -1,6 +1,7 @@
 .*
-node_modules
-dist
 
-graphdb-free-9.11.1-dist.zip
+components/website/www/dist
+components/website/www/node_modules
 components/website/www/src/assets
+
+components/graphdb/*.zip

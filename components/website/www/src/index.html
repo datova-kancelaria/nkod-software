@@ -1,12 +1,12 @@
 <!doctype html>
-<html lang="sk" class="govuk-template">
+<html data-attr-t lang-t="html.language" class="govuk-template">
 
 <head>
-  <meta charset="UTF-8" />
-  <title>data.gov.sk/sparql</title>
+  <meta charset="utf-8" />
+  <title data-t>html.title</title>
   <link href="https://unpkg.com/@triply/yasgui/build/yasgui.min.css" rel="stylesheet" type="text/css" />
   <script src="https://unpkg.com/@triply/yasgui/build/yasgui.min.js"></script>
-  <link rel="stylesheet" href="./styles.scss" />
+  <link rel="stylesheet" href="../src/styles.scss" />
 </head>
 
 <body class="govuk-template__body">
@@ -19,10 +19,51 @@
           <div class="govuk-grid-column-full">
             <div class="idsk-header-web__brand-gestor">
               <span class="govuk-body-s idsk-header-web__brand-gestor-text">
-                <b>znalosti.gov.sk</b>
+                <b data-t>header.gestor</b>
               </span>
             </div>
             <div class="idsk-header-web__brand-spacer"></div>
+            <div class="idsk-header-web__brand-language">
+              <div>
+                <button class="idsk-header-web__brand-language-button" data-attr-t aria-label-t="open-lang-menu"
+                  aria-expanded="false" data-text-for-hide-t="close-lang-menu" data-text-for-show-t="open-lang-menu">
+                  <span data-t>header.active-language</span>
+                  <div class="idsk-header-web__link-arrow"></div>
+                </button>
+                <ul class="idsk-header-web__brand-language-list">
+
+                  <li class="idsk-header-web__brand-language-list-item">
+                    <a class="govuk-link idsk-header-web__brand-language-list-item-link " title="Deutsch" data-lang="de">
+                      Deutsch
+                    </a>
+                  </li>
+
+                  <li class="idsk-header-web__brand-language-list-item">
+                    <a class="govuk-link idsk-header-web__brand-language-list-item-link " title="English" data-lang="en">
+                      English
+                    </a>
+                  </li>
+
+                  <li class="idsk-header-web__brand-language-list-item">
+                    <a class="govuk-link idsk-header-web__brand-language-list-item-link " title="Magyar" data-lang="hu">
+                      Magyar
+                    </a>
+                  </li>
+
+                  <li class="idsk-header-web__brand-language-list-item">
+                    <a class="govuk-link idsk-header-web__brand-language-list-item-link" title="Slovenčina" data-lang="sk">
+                      Slovenčina
+                    </a>
+                  </li>
+
+                  <li class="idsk-header-web__brand-language-list-item">
+                    <a class="govuk-link idsk-header-web__brand-language-list-item-link " title="українська" data-lang="uk">
+                      українська
+                    </a>
+                  </li>
+
+                </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -34,9 +75,9 @@
         <div class="govuk-grid-row">
           <div class="govuk-grid-column-full">
             <div class="idsk-header-web__main-headline"><a href="/" title="Odkaz na úvodnú stránku">
-                <img src="../assets/images/znalosti-logo3.svg" alt="ID-SK Frontend"
+                <img src="../src/assets/images/znalosti-logo3.svg" alt="ID-SK Frontend"
                   class="idsk-header-web__main-headline-logo">
-                <h2 class="govuk-heading-m">Znalostný graf údajov verejnej správy</h2>
+                <h2 class="govuk-heading-m" data-t>header.headline</h2>
               </a></div>
           </div>
         </div>
@@ -50,12 +91,12 @@
   <main class="govuk-main-wrapper govuk-body" id="main-content" role="main">
     <div class="govuk-width-container idsk-block-centered">
       <section>
-        <h2>Príklady dotazov</h2>
+        <h2 data-t>main.query-examples</h2>
         <ul id="queries">
         </ul>
       </section>
       <section>
-        <h2>Zadaj SPARQL dotaz</h2>
+        <h2 data-t>main.enter-sparql-query</h2>
         <div id="yasgui"></div>
       </section>
     </div>
@@ -63,7 +104,7 @@
   <footer class="idsk-footer">
 
   </footer>
-  <script type="module" src="./main.js"></script>
+  <script type="module" src="../src/main.js"></script>
 </body>
 
 </html>

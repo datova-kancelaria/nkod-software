@@ -1,0 +1,13 @@
+html:
+  language: hu
+  title: data.gov.sk/sparql
+header:  
+  gestor: znalosti.gov.sk
+  headline: Közigazgatási adatok tudásgráfja
+  open-lang-menu: Bontsa ki a nyelv menüt
+  close-lang-menu: Nyelv menü elrejtése
+  active-language: Magyar
+main:
+  query-examples: Példák a lekérdezésekre
+  enter-sparql-query: Adjon meg egy SPARQL-lekérdezést
+

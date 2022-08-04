@@ -2,20 +2,17 @@ type: sparql-queries
 version: 1
 content:
   - name: 
-      en: "Select all"
-    description: 
-      en: "Return example of all statements"
-    query: |
-      PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
-      PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
-      
-      SELECT * WHERE {
-        ?sub ?pred ?obj .
-      } LIMIT 10
-  - name: 
-      en: "Select datasets"
+      de: Datensätze auswählen
+      en: Select datasets
+      hu: Válassza ki az adatkészleteket
+      sk: Vyberte množiny údajov
+      uk: Виберіть набори даних
     description:
-      en: "Names of datasets"
+      de: Namen von Datensätzen
+      en: Names of datasets
+      hu: Adatkészletek nevei
+      sk: Názvy súborov údajov
+      uk: Назви наборів даних
     query: |
       PREFIX dcat: <http://www.w3.org/ns/dcat#>
       PREFIX dct: <http://purl.org/dc/terms/>

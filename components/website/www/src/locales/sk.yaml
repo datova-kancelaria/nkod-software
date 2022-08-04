@@ -1,0 +1,12 @@
+html:
+  language: sk
+  title: data.gov.sk/sparql
+header:  
+  gestor: znalosti.gov.sk
+  headline: Znalostný graf údajov verejnej správy
+  open-lang-menu: Rozbaliť jazykové menu
+  close-lang-menu: Skryť jazykové menu
+  active-language: Slovenčina
+main:
+  query-examples: Príklady dotazov
+  enter-sparql-query: Zadaj SPARQL dotaz

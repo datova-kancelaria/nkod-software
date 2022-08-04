@@ -1,0 +1,12 @@
+html:
+  language: uk
+  title: data.gov.sk/sparql
+header:  
+  gestor: znalosti.gov.sk
+  headline: Граф знань даних державного управління
+  open-lang-menu: Розгорніть меню мови
+  close-lang-menu: Сховати меню мови
+  active-language: українська
+main:
+  query-examples: Приклади запитів
+  enter-sparql-query: Введіть запит SPARQL
