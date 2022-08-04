@@ -1,11 +1,18 @@
 {
   "name": "sk-nodc-website",
   "browserslist": "> 0.5%, last 2 versions, not dead",
+  "source": [
+    "./i18n/index.html",
+    "./i18n/de/index.html",
+    "./i18n/en/index.html",
+    "./i18n/hu/index.html",
+    "./i18n/uk/index.html"
+  ],
   "scripts": {
-    "start": "parcel ./i18n/**/*.html",
+    "start": "parcel",
     "assets": "copy-files-from-to",
     "i18n": "copy-files-from-to & static-i18n -l sk -i sk -i de -i en -i hu -i uk --fileFormat yaml src",
-    "build": "parcel build --no-source-maps ./i18n/**/*.html && node postbuild.js"
+    "build": "parcel build --no-source-maps && node postbuild.js"
   },
   "devDependencies": {
     "@id-sk/frontend": "^2.10.0",
