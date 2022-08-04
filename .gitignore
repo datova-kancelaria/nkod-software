@@ -3,5 +3,6 @@
 components/website/www/dist
 components/website/www/node_modules
 components/website/www/src/assets
+components/website/www/i18n
 
 components/graphdb/*.zip

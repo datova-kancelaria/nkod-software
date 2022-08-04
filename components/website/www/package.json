@@ -3,8 +3,8 @@
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "scripts": {
     "start": "parcel ./i18n/**/*.html",
-    "postinstall": "copy-files-from-to",
-    "i18n": "static-i18n -l sk -i sk -i de -i en -i hu -i uk --fileFormat yaml src",
+    "assets": "copy-files-from-to",
+    "i18n": "copy-files-from-to & static-i18n -l sk -i sk -i de -i en -i hu -i uk --fileFormat yaml src",
     "build": "parcel build --no-source-maps ./i18n/**/*.html && node postbuild.js"
   },
   "devDependencies": {
