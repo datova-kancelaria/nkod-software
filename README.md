@@ -9,6 +9,7 @@ The following list briefly describes the components:
  * [Registration Updater](./components/registration-updater/README.md) 
  * [Scheduler](./components/scheduler/README.md) 
  * [Website](./components/website/README.md) 
+
 All components are published as Docker images into GitHub Docker registry using GitHub action ```publish-docker```.
 
 ## Kubernetes Deployment Scripts
