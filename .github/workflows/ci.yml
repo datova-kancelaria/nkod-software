@@ -26,18 +26,18 @@ jobs:
         with:
           context: ./components/scheduler/
           push: true
-          tags: ghcr.io/mff-uk/sk_nodc_scheduler:latest
+          tags: ghcr.io/datova-kancelaria/nodc_scheduler:latest
       -
         name: Publish registration-updater
         uses: docker/build-push-action@v3
         with:
           context: ./components/registration-updater/
           push: true
-          tags: ghcr.io/mff-uk/sk_nodc_registration_updater:latest
+          tags: ghcr.io/datova-kancelaria/nodc_registration_updater:latest
       -
         name: Publish website
         uses: docker/build-push-action@v3
         with:
           context: ./components/website/
           push: true
-          tags: ghcr.io/mff-uk/sk_nodc_website:latest
+          tags: ghcr.io/datova-kancelaria/nodc_website:latest

@@ -23,6 +23,7 @@ spec:
             claimName: nodc-graphdb-claim
       containers:
         - name: nodc-graphdb
+          # TODO: This need to be replaced with other repository.
           image: xrgk8s.projekty.ms.mff.cuni.cz:18079/sknodc_graphdb
           imagePullPolicy: Always
           ports:
@@ -30,6 +31,13 @@ spec:
           volumeMounts:
             - mountPath: "/data/graphdb"
               name: nodc-graphdb-volume
+          resources:
+                requests:
+                  memory: "2Gi"
+                  cpu: "2"
+                limits:
+                  memory: "4Gi"
+                  cpu: "4"
           env:
             - name: GRAPHDB_ADMIN_PASSWORD
               valueFrom:

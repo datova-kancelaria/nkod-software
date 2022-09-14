@@ -23,7 +23,7 @@ spec:
             claimName: nodc-registration-claim
       containers:
         - name: nodc-registration-updater
-          image: ghcr.io/mff-uk/sk_nodc_registration_updater:latest
+          image: ghcr.io/datova-kancelaria/nodc_registration_updater:latest
           imagePullPolicy: Always
           ports:
             - containerPort: 80
@@ -34,9 +34,9 @@ spec:
             - name: WEBHOOK_REF
               value: "refs/heads/main"
             - name: WEBHOOK_REPOSITORY_NAME
-              value: "jakubklimek/nkod-sk-registrace"
+              value: "datova-kancelaria/nkod-registrace"
             - name: WEBHOOK_REPOSITORY
-              value: "https://github.com/jakubklimek/nkod-sk-registrace.git"
+              value: "https://github.com/datova-kancelaria/nkod-registracee.git"
             - name: WEBHOOK_TOKEN
               valueFrom:
                 secretKeyRef:

@@ -21,11 +21,11 @@ spec:
                 claimName: nodc-linkedpipes-claim      
           containers:
           - name: nodc-linkedpipes-executor
-            image: ghcr.io/mff-uk/sk_nodc_scheduler:latest
+            image: ghcr.io/datova-kancelaria/sk_nodc_scheduler:latest
             imagePullPolicy: Always
             env:
               - name: STORAGE_REPOSITORY
-                value: "https://github.com/jakubklimek/nkod-sk-pipeline-deploy.git"
+                value: "https://github.com/datova-kancelaria/nkod-pipeline.git"
               - name: RELOAD_URL
                 value: "http://nodc-storage:8083/api/v1/management/reload"
               - name: EXECUTE_PIPELINE_URL
