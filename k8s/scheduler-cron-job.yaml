@@ -21,7 +21,7 @@ spec:
                 claimName: nodc-linkedpipes-claim      
           containers:
           - name: nodc-linkedpipes-executor
-            image: ghcr.io/datova-kancelaria/sk_nodc_scheduler:latest
+            image: ghcr.io/datova-kancelaria/nodc_scheduler:latest
             imagePullPolicy: Always
             env:
               - name: STORAGE_REPOSITORY
