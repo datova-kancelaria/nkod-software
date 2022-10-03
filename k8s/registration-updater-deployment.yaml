@@ -36,7 +36,7 @@ spec:
             - name: WEBHOOK_REPOSITORY_NAME
               value: "datova-kancelaria/nkod-registrace"
             - name: WEBHOOK_REPOSITORY
-              value: "https://github.com/datova-kancelaria/nkod-registracee.git"
+              value: "https://github.com/datova-kancelaria/nkod-registrace.git"
             - name: WEBHOOK_TOKEN
               valueFrom:
                 secretKeyRef:
