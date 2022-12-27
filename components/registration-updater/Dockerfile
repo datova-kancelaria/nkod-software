@@ -7,19 +7,26 @@ RUN addgroup --gid 5987 "nodc" \
     && usermod -a -G nodc www-data
 
 COPY ./www/webhook.php /var/www/html/
-COPY ./update-registrations.sh /opt/
 
-RUN chown 5987:5987 /opt/update-registrations.sh \ 
-    && chmod u+xs /opt/update-registrations.sh \
-    && chmod a+x /opt/update-registrations.sh
+COPY ./registrations-update.sh /opt/
+RUN chown 5987:5987 /opt/registrations-update.sh \ 
+    && chmod u+xs /opt/registrations-update.sh \
+    && chmod a+x /opt/registrations-update.sh
+
+COPY ./registrations-entrypoint.sh /opt/
+RUN chown 5987:5987 /opt/registrations-entrypoint.sh \ 
+    && chmod u+xs /opt/registrations-entrypoint.sh \
+    && chmod a+x /opt/registrations-entrypoint.sh
 
 # The output must be redirected to file or another output stream. This allows
 # PHP to execute the command in background.
 # See https://www.php.net/manual/en/function.exec.php
-ENV WEBHOOK_CMD="/opt/update-registrations.sh > /dev/null &"
+ENV WEBHOOK_CMD="/opt/registrations-update.sh > /dev/null &"
 ENV WEBHOOK_TOKEN=""
 ENV WEBHOOK_REF=""
 ENV WEBHOOK_REPOSITORY=""
 ENV WEBHOOK_REPOSITORY_NAME=""
+
+ENTRYPOINT /opt/registrations-entrypoint.sh
 
 EXPOSE 80
