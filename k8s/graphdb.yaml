@@ -30,13 +30,6 @@ spec:
           volumeMounts:
             - mountPath: "/data/graphdb"
               name: nodc-graphdb-volume
-          resources:
-                requests:
-                  memory: "4Gi"
-                  cpu: "2"
-                limits:
-                  memory: "8Gi"
-                  cpu: "4"
           env:
             - name: GRAPHDB_ADMIN_PASSWORD
               valueFrom:
