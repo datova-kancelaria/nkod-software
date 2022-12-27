@@ -1,7 +1,7 @@
 #!/bin/sh
 
 # Make sure repository is ready.
-/opt/registrations-update.sh
+su - nodc -c /opt/registrations-update.sh
 
 # This is code from php:7.4.30-apache-buster/docker-php-entrypoint
 set -e
