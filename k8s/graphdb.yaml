@@ -46,7 +46,7 @@ spec:
                   key: GRAPHDB_PASSWORD
                   optional: false
       imagePullSecrets:
-        - name: regcred
+        - name: ocirsecret
 ---
 apiVersion: v1
 kind: Service
