@@ -3,13 +3,12 @@ kind: PersistentVolumeClaim
 metadata:
   name: nodc-linkedpipes-claim
   labels:
-    app.kubernetes.io/name: NODC
+    app.kubernetes.io/name: nodc
 spec:
   accessModes:
-    - ReadWriteOnce
+    - ReadWriteMany
+  storageClassName: ""
   resources:
     requests:
       storage: 256Gi
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: NODC
+  volumeName: nodc-linkedpipes-pv
