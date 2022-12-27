@@ -11,7 +11,7 @@ echo "Moving data to storage ..."
 cp -r ./pipelines /data/lp-etl/storage/
 cp -r ./templates /data/lp-etl/storage/
 
-echo "Removing tmporary data"
+echo "Removing temporary data"
 rm -rf /tmp/storage/
 
 # Execute a POST 
