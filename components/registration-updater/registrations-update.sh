@@ -1,5 +1,7 @@
 #!/bin/bash
 echo "Updating repository"
+id -u
+ls -la /data/registration
 
 mkdir -p /data/registration
 
