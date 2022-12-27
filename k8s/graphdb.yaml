@@ -81,13 +81,8 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
+  storageClassName: ""
   resources:
     requests:
       storage: 16Gi
-  selector:
-    matchLabels:
-      app.kubernetes.io/name: nodc
-
-
-
-
+  volumeName: nodc-graphdb-pv
