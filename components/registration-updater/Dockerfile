@@ -11,13 +11,11 @@ COPY ./www/webhook.php /var/www/html/
 
 COPY ./registrations-update.sh /opt/
 RUN chown 5987:5987 /opt/registrations-update.sh \ 
-    && chmod u+xs /opt/registrations-update.sh \
-    && chmod a+x /opt/registrations-update.sh
+    && chmod g+x /opt/registrations-update.sh
 
 COPY ./registrations-entrypoint.sh /opt/
 RUN chown 5987:5987 /opt/registrations-entrypoint.sh \ 
-    && chmod u+xs /opt/registrations-entrypoint.sh \
-    && chmod a+x /opt/registrations-entrypoint.sh
+    && chmod g+x /opt/registrations-entrypoint.sh
 
 # The output must be redirected to file or another output stream. This allows
 # PHP to execute the command in background.
