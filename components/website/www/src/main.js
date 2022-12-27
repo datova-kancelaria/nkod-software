@@ -7,14 +7,18 @@ const defaultLanguage = "sk";
 
 let yasgui;
 
-
 (function initialize() {
   const language = activeLanguage();
+  console.log({language, "api": getApiUrl()});
   createYasgui(language);
   buildQueryList(language);
   initLanguageMenu(language);
   initIdSk();
 })();
+
+function getApiUrl() {
+  return process.env.API_URL;
+}
 
 function activeLanguage() {
   return document.documentElement.lang;
@@ -24,18 +28,25 @@ function createYasgui(language) {
   // https://triply.cc/docs/yasgui-api
   yasgui = new Yasgui(document.getElementById("yasgui"), {
     "requestConfig": {
-      "endpoint": () => {
-        // This value is used to execute a query, we need to adjust
-        // for different locations.
-        if (defaultLanguage === language) {
-          return "./api/sparql"
-        } else {
-          return "../api/sparql"
-        }
-      }
+      "endpoint": () => resolveRelativeUrl("api/sparql"),
     },
     "copyEndpointOnNewTab": false,
   });
+}
+
+function resolveRelativeUrl(relativeUrl) {
+  const apiUrl = getApiUrl();
+  if (apiUrl !== undefined) {
+    return apiUrl + relativeUrl;
+  }
+  if (defaultLanguage === activeLanguage()) {
+    // The default language is located in the root.
+    return "./" + relativeUrl;
+  } else {
+    // We are in language directory (eg. /en/) so we need to navigate
+    // up one folder.
+    return "../" + relativeUrl;
+  }
 }
 
 function buildQueryList(language) {

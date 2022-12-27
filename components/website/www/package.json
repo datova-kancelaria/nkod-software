@@ -11,15 +11,15 @@
   "scripts": {
     "start": "parcel",
     "assets": "copy-files-from-to",
-    "i18n": "copy-files-from-to & static-i18n -l sk -i sk -i de -i en -i hu -i uk --fileFormat yaml src",
+    "i18n": "static-i18n -l sk -i sk -i de -i en -i hu -i uk --fileFormat yaml src",
     "build": "parcel build --no-source-maps && node postbuild.js"
   },
   "devDependencies": {
     "@id-sk/frontend": "^2.10.0",
-    "@parcel/transformer-sass": "^2.6.2",
-    "@parcel/transformer-yaml": "^2.6.2",
-    "copy-files-from-to": "^3.2.2",
-    "parcel": "^2.6.2",
+    "@parcel/transformer-sass": "^2.8.0",
+    "@parcel/transformer-yaml": "^2.8.0",
+    "copy-files-from-to": "^3.6.0",
+    "parcel": "^2.8.0",
     "replace-in-file": "^6.3.5",
     "static-i18n": "^0.2.10"
   },
