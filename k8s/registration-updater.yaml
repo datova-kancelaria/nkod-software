@@ -3,18 +3,18 @@ kind: Deployment
 metadata:
   name: nodc-registration-updater-deployment
   labels:
-    app.kubernetes.io/name: NODC
+    app.kubernetes.io/name: nodc
     app.kubernetes.io/component: registration-updater
 spec:
   selector:
     matchLabels:
-      app.kubernetes.io/name: NODC
+      app.kubernetes.io/name: nodc
       app.kubernetes.io/component: registration-updater
   replicas: 1
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: NODC
+        app.kubernetes.io/name: nodc
         app.kubernetes.io/component: registration-updater
     spec:
       volumes:
@@ -42,4 +42,35 @@ spec:
                 secretKeyRef:
                   name: nodc-secret
                   key: REGISTRATION_WEBHOOK_TOKEN
-
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nodc-registration-updater
+  labels:
+    app.kubernetes.io/name: nodc
+    app.kubernetes.io/component: registration-updater
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: nodc
+    app.kubernetes.io/component: registration-updater
+  ports:
+  - protocol: TCP
+    targetPort: 80
+    port: 8086
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nodc-registration-claim
+  labels:
+    app.kubernetes.io/name: nodc
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: ""
+  resources:
+    requests:
+      storage: 2Gi
+  volumeName: nodc-registration-pv
