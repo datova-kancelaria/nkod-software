@@ -1,5 +1,5 @@
 #!/bin/bash
-echo "Updating repository"
+echo "Updating repository as $USER"
 
 mkdir -p /data/registration
 
