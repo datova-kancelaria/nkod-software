@@ -1,6 +1,11 @@
 #!/bin/sh
 
-# Make sure repository is ready.
+# Make sure repository directory exists with proper configuration.
+mkdir -p /data/registration
+chwon nodc:nodc /data/registration
+chmod g+s /data/registration
+
+# Execute initial check.
 /opt/registrations-update.sh
 
 # This is code from php:7.4.30-apache-buster/docker-php-entrypoint

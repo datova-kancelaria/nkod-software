@@ -17,6 +17,9 @@ COPY ./registrations-entrypoint.sh /opt/
 RUN chown 5987:5987 /opt/registrations-entrypoint.sh \ 
     && chmod g+x /opt/registrations-entrypoint.sh
 
+# Allow working with dubious ownership in git repository. 
+RUN git config --system --add safe.directory /data/registration
+
 # The output must be redirected to file or another output stream. This allows
 # PHP to execute the command in background.
 # See https://www.php.net/manual/en/function.exec.php
