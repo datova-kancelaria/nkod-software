@@ -29,7 +29,6 @@ ENV WEBHOOK_REF=""
 ENV WEBHOOK_REPOSITORY=""
 ENV WEBHOOK_REPOSITORY_NAME=""
 
-CMD apache2-foreground
 ENTRYPOINT /opt/registrations-entrypoint.sh
 
 EXPOSE 80
