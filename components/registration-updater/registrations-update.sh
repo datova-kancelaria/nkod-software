@@ -9,6 +9,3 @@ cd /data/registration
 git fetch --all
 git reset --hard HEAD
 git pull
-
-# Update ownership, as git would change that to current user.
-chown -R nodc:nodc .

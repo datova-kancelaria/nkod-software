@@ -1,9 +1,10 @@
 #!/bin/sh
 
 # Make sure repository directory exists with proper configuration.
-mkdir -p /data/registration
-chwon nodc:nodc /data/registration
-chmod g+s /data/registration
+[ ! -d "/data/registration" ] \
+  && mkdir -p /data/registration \
+  && chown nodc:nodc /data/registration \
+  && chmod g+s /data/registration
 
 # Execute initial check.
 /opt/registrations-update.sh
