@@ -3,18 +3,18 @@ kind: Deployment
 metadata:
   name: nodc-storage-deployment
   labels:
-    app.kubernetes.io/name: NODC
+    app.kubernetes.io/name: nodc
     app.kubernetes.io/component: linkedpipes.storage
 spec:
   selector:
     matchLabels:
-      app.kubernetes.io/name: NODC
+      app.kubernetes.io/name: nodc
       app.kubernetes.io/component: linkedpipes.storage
   replicas: 1
   template:
     metadata:
       labels:
-        app.kubernetes.io/name: NODC
+        app.kubernetes.io/name: nodc
         app.kubernetes.io/component: linkedpipes.storage
     spec:
       volumes:
@@ -35,3 +35,21 @@ spec:
           volumeMounts:
             - mountPath: "/data/lp-etl/"
               name: nodc-storage-volume
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nodc-storage
+  labels:
+    app.kubernetes.io/name: nodc
+    app.kubernetes.io/component: linkedpipes.storage
+spec:
+  type: ClusterIP
+  selector:
+    app.kubernetes.io/name: nodc
+    app.kubernetes.io/component: linkedpipes.storage
+  ports:
+  - protocol: TCP
+    targetPort: 8083
+    port: 8083
+
