@@ -45,8 +45,13 @@ spec:
                   name: nodc-secret
                   key: GRAPHDB_PASSWORD
                   optional: false
+            - name: GRAPHDB_EXTERNAL_URL
+              valueFrom:
+                configMapKeyRef:
+                  name: nodc-configuration
+                  key: graphdb.publicUrl
       imagePullSecrets:
-        - name: ocirsecret
+        - name: ocir-secret
 ---
 apiVersion: v1
 kind: Service

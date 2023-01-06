@@ -24,11 +24,11 @@ RUN git config --system --add safe.directory /data/registration
 # PHP to execute the command in background.
 # See https://www.php.net/manual/en/function.exec.php
 ENV WEBHOOK_CMD="/opt/registrations-update.sh > /dev/null &"
-ENV WEBHOOK_TOKEN=""
-ENV WEBHOOK_REF=""
-ENV WEBHOOK_REPOSITORY=""
-ENV WEBHOOK_REPOSITORY_NAME=""
+ENV WEBHOOK_TOKEN
+ENV WEBHOOK_REF
+ENV WEBHOOK_REPOSITORY
+ENV WEBHOOK_REPOSITORY_NAME
 
-ENTRYPOINT /opt/registrations-entrypoint.sh
+CMD ["/opt/registrations-entrypoint.sh"]
 
 EXPOSE 80

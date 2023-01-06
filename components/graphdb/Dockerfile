@@ -27,10 +27,10 @@ WORKDIR /opt/
 COPY ./entrypoint.sh ./
 RUN chmod u+x entrypoint.sh
 
-# Single quotes to prevent substitution, also you have to change this.
-ENV GRAPHDB_ADMIN_PASSWORD 'admin'
-ENV GRAPHDB_USER lp-etl 
-ENV GRAPHDB_PASSWORD 'lp-etl'
+ENV GRAPHDB_ADMIN_PASSWORD
+ENV GRAPHDB_USER
+ENV GRAPHDB_PASSWORD
+ENV GRAPHDB_EXTERNAL_URL
 ENV GRAPHDB_DISTINCT_THRESHOLD 128m
 
 CMD ["/opt/entrypoint.sh"]
