@@ -49,7 +49,7 @@ spec:
           command: ["chown", "5987:5987", "/data/lp-etl/"]
           volumeMounts:
             - mountPath: "/data/lp-etl/"
-              name: nodc-storage-volume
+              name: nodc-executor-monitor-volume
 ---
 apiVersion: v1
 kind: Service

@@ -69,7 +69,7 @@ spec:
           command: ["chown", "5987:5987", "/data/lp-etl/"]
           volumeMounts:
             - mountPath: "/data/lp-etl/"
-              name: nodc-storage-volume
+              name:  nodc-executor-volume
         - name: set-registration-ownership
           image: alpine:3.17.0
           command: ["chown", "5987:5987", "/data/registration/"]
