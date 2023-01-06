@@ -1,4 +1,4 @@
-name: docker
+name: publish-registration-updater
 on:
   push:
     paths:
@@ -6,7 +6,7 @@ on:
     branches:
       - 'main'
 jobs:
-  publish-docker:
+  publish:
     runs-on: ubuntu-20.04
     steps:
       - name: Checkout
