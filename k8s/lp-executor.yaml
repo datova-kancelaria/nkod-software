@@ -74,13 +74,13 @@ spec:
           image: alpine:3.17.0
           command: ["chown", "5987:5987", "/data/registration/"]
           volumeMounts:
-            - mountPath: "/data/lp-etl/"
+            - mountPath: "/data/registration/"
               name: nodc-registration-volume
         - name: set-website-ownership
           image: alpine:3.17.0
           command: ["chown", "5987:5987", "/data/website/"]
           volumeMounts:
-            - mountPath: "/data/lp-etl/"
+            - mountPath: "/data/website/"
               name: nodc-website-volume
 ---
 apiVersion: v1
