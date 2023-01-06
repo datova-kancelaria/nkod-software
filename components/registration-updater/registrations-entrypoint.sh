@@ -1,14 +1,17 @@
 #!/bin/sh
 
+set -e
+
 # Make sure repository directory exists with proper configuration.
-[ ! -d "/data/registration" ] \
-  && mkdir -p /data/registration \
-  && chown nodc:nodc /data/registration \
-  && chmod g+s /data/registration
+[ ! -d "/data/registration/repository" ] \
+  && echo "Creating repository directory ... " \
+  && mkdir -p /data/registration/repository \
+  && cd /data/registration/repository \
+  && chown nodc:nodc . \
+  && chmod g+s .
 
 # Execute initial check.
 /opt/registrations-update.sh
 
 # This is code based on php:7.4.30-apache-buster/docker-php-entrypoint
-set -e
 apache2-foreground

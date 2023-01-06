@@ -42,6 +42,16 @@ spec:
                 secretKeyRef:
                   name: nodc-secret
                   key: REGISTRATION_WEBHOOK_TOKEN
+      initContainers:
+        - name: set-data-ownership
+          image: alpine:3.17.0
+          command:
+            - "chown"
+            - "5987:5987"
+            - "/data/registration/"
+          volumeMounts:
+            - mountPath: "/data/registration/"
+              name: nodc-registration-volume
 ---
 apiVersion: v1
 kind: Service

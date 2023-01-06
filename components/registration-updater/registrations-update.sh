@@ -1,11 +1,16 @@
 #!/bin/bash
 
-cd /data/registration
+set -e
+
+echo "New run started: $(date)" 
+cd /data/registration/repository
 
 # Clone if the direcotry is empty.
-[ ! -d ".git" ] && git clone $WEBHOOK_REPOSITORY ./
+[ ! -d ".git" ] \
+  && echo "Clone repository $WEBHOOK_REPOSITORY"
+  && git clone $WEBHOOK_REPOSITORY ./
 
-# Update data.
+echo "Update data"
 git fetch --all
 git reset --hard HEAD
 git pull
