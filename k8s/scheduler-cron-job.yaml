@@ -4,11 +4,11 @@ kind: CronJob
 metadata:
   name: nodc-scheduler-cronjob
   labels:
-    app.kubernetes.io/name: NODC
+    app.kubernetes.io/name: nodc
     app.kubernetes.io/component: scheduler
 spec:
-  schedule: "17 2,13 * * *"
   # https://crontab.guru/
+  schedule: "17 5 * * *"  
   failedJobsHistoryLimit: 2
   successfulJobsHistoryLimit: 3
   jobTemplate:
@@ -34,3 +34,10 @@ spec:
               - mountPath: "/data/lp-etl/"
                 name: nodc-linkedpipes-volume
           restartPolicy: OnFailure
+        initContainers:
+          - name: set-data-ownership
+            image: alpine:3.17.0
+            command: ["chown", "5987:5987", "/data/lp-etl/"]
+            volumeMounts:
+              - mountPath: "/data/lp-etl/"
+                name: nodc-linkedpipes-volume
