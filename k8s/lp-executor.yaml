@@ -17,6 +17,8 @@ spec:
         app.kubernetes.io/name: nodc
         app.kubernetes.io/component: linkedpipes.executor
     spec:
+      securityContext:
+        fsGroup: 5987
       volumes:
         - name: nodc-executor-volume
           persistentVolumeClaim:
@@ -56,6 +58,29 @@ spec:
             - mountPath: "/data/registration/"
               name: nodc-registration-volume
             - mountPath: "/data/website/"
+              name: nodc-website-volume
+          securityContext:
+            runAsUser: 5987
+            runAsGroup: 5987
+            runAsNonRoot: true
+      initContainers:
+        - name: set-data-ownership
+          image: alpine:3.17.0
+          command: ["chown", "5987:5987", "/data/lp-etl/"]
+          volumeMounts:
+            - mountPath: "/data/lp-etl/"
+              name: nodc-storage-volume
+        - name: set-registration-ownership
+          image: alpine:3.17.0
+          command: ["chown", "5987:5987", "/data/registration/"]
+          volumeMounts:
+            - mountPath: "/data/lp-etl/"
+              name: nodc-registration-volume
+        - name: set-website-ownership
+          image: alpine:3.17.0
+          command: ["chown", "5987:5987", "/data/website/"]
+          volumeMounts:
+            - mountPath: "/data/lp-etl/"
               name: nodc-website-volume
 ---
 apiVersion: v1

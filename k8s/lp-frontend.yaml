@@ -30,6 +30,8 @@ spec:
               value: "http://nodc-storage:8083"
           ports:
             - containerPort: 8080
+          securityContext:
+            runAsNonRoot: true
 ---
 apiVersion: v1
 kind: Service

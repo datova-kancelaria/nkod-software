@@ -17,13 +17,15 @@ spec:
         app.kubernetes.io/name: nodc
         app.kubernetes.io/component: linkedpipes.storage
     spec:
+      securityContext:
+        fsGroup: 5987
       volumes:
         - name: nodc-storage-volume
           persistentVolumeClaim:
             claimName: nodc-linkedpipes-claim
       containers:
         - name: nodc-linkedpipes-storage
-          image: linkedpipes/etl-storage:main
+          image: linkedpipes/etl-storage:develop
           imagePullPolicy: Always
           env:
             - name: LP_ETL_DOMAIN
@@ -32,6 +34,17 @@ spec:
               value: "http://nodc-executor-monitor:8081"
           ports:
             - containerPort: 8083
+          volumeMounts:
+            - mountPath: "/data/lp-etl/"
+              name: nodc-storage-volume
+          securityContext:
+            runAsUser: 5987
+            runAsGroup: 5987
+            runAsNonRoot: true
+      initContainers:
+        - name: set-data-ownership
+          image: alpine:3.17.0
+          command: ["chown", "5987:5987", "/data/lp-etl/"]
           volumeMounts:
             - mountPath: "/data/lp-etl/"
               name: nodc-storage-volume
