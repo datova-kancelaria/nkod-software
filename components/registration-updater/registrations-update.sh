@@ -7,7 +7,7 @@ cd /data/registration/repository
 
 # Clone if the direcotry is empty.
 [ ! -d ".git" ] \
-  && echo "Clone repository $WEBHOOK_REPOSITORY"
+  && echo "Clone repository $WEBHOOK_REPOSITORY" \
   && git clone $WEBHOOK_REPOSITORY ./
 
 echo "Update data"
