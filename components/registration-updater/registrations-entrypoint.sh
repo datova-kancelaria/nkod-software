@@ -3,7 +3,7 @@
 set -e
 
 # Prevent detected dubious ownership in repository
-git config --user --add safe.directory /data/registration/repository
+git config --global --add safe.directory /data/registration/repository
 
 # Make sure repository directory exists with proper configuration.
 [ ! -d "/data/registration/repository" ] \
