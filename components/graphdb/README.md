@@ -5,9 +5,9 @@ Notice that we employ ADD to copy the resource.
 As a result we can employ external URL as the source of the archive.
 
 In addition the Docker image utilize ```entrypoint.sh``` to:
- * Prepare configuration
- * Create empty database if it does not exists
- * Cleanup
+* Prepare configuration
+* Create empty database if it does not exists
+* Cleanup
 
 As the password is provided as environment variable, we need to update the configuration with it before we start GraphDB.
 To do so we read the password from environment property, apply bcrypt and store it into ```settings.js```.
@@ -19,7 +19,8 @@ The name of the repository is *nodc*.
 The last step before start-up is to remove any existing lock file as the previous instance may be terminated without proper shutdown.
 
 ## Environment variables
- * *GRAPHDB_ADMIN_PASSWORD* - Admin password.
- * *GRAPHDB_USER* - Name of a user with access to *nodc* repository.
- * *GRAPHDB_PASSWORD* - Password for the *GRAPHDB_USER*.
- * *GRAPHDB_DISTINCT_THRESHOLD* - Given as ```default.min.distinct.threshold``` to GraphDB. Limit memory requirements.
+* *GRAPHDB_ADMIN_PASSWORD* - Admin password.
+* *GRAPHDB_USER* - Name of a user with access to *nodc* repository.
+* *GRAPHDB_PASSWORD* - Password for the *GRAPHDB_USER*.
+* *GRAPHDB_DISTINCT_THRESHOLD* - Given as ```default.min.distinct.threshold``` to GraphDB.
+  Limits memory requirements.
