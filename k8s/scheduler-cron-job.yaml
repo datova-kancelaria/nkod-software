@@ -8,7 +8,7 @@ metadata:
     app.kubernetes.io/component: scheduler
 spec:
   # https://crontab.guru/
-  schedule: "17 5 * * *"  
+  schedule: "17 4 * * *"  
   failedJobsHistoryLimit: 2
   successfulJobsHistoryLimit: 3
   jobTemplate:
@@ -18,7 +18,10 @@ spec:
           volumes:
             - name: nodc-linkedpipes-volume
               persistentVolumeClaim:
-                claimName: nodc-linkedpipes-claim      
+                claimName: nodc-linkedpipes-claim
+            - name: nodc-registration-volume
+              persistentVolumeClaim:
+                claimName: nodc-registration-claim
           containers:
           - name: nodc-linkedpipes-executor
             image: ghcr.io/datova-kancelaria/nodc_scheduler:latest
@@ -30,14 +33,42 @@ spec:
                 value: "http://nodc-storage:8083/api/v1/management/reload"
               - name: EXECUTE_PIPELINE_URL
                 value: "http://nodc-frontend:8080/api/v1/executions?pipeline=https://sk-nkod.opendata.cz/etl/resources/pipelines/1651823973959"
+              - name: PIPELINE_REPOSITORY
+                value: "https://github.com/datova-kancelaria/nkod-registrace.git"
             volumeMounts:
               - mountPath: "/data/lp-etl/"
                 name: nodc-linkedpipes-volume
+              - mountPath: "/data/registration/"
+                name: nodc-registration-volume
           restartPolicy: OnFailure
-        initContainers:
-          - name: set-data-ownership
-            image: alpine:3.17.0
-            command: ["chown", "5987:5987", "/data/lp-etl/"]
-            volumeMounts:
-              - mountPath: "/data/lp-etl/"
-                name: nodc-linkedpipes-volume
+          initContainers:
+            - name: set-storage-ownership
+              image: alpine:3.17.0
+              command: ["chown", "5987:5987", "/data/lp-etl/"]
+              volumeMounts:
+                - mountPath: "/data/lp-etl/"
+                  name: nodc-linkedpipes-volume
+            - name: set-registration-ownership
+              image: alpine:3.17.0
+              command:
+                - "chown"
+                - "5987:5987"
+                - "/data/registration/"
+              volumeMounts:
+                - mountPath: "/data/registration/"
+                  name: nodc-registration-volume
+---
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nodc-registration-claim
+  labels:
+    app.kubernetes.io/name: nodc
+spec:
+  accessModes:
+    - ReadWriteMany
+  storageClassName: ""
+  resources:
+    requests:
+      storage: 2Gi
+  volumeName: nodc-registration-pv
