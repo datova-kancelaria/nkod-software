@@ -4,7 +4,7 @@ RUN apt-get update \
  && apt-get -y --no-install-recommends install git curl ca-certificates
 
 RUN addgroup --gid 5987 "nodc" \
-    && useradd --gid "nodc" --uid 5987 "nodc"
+    && useradd -m --gid "nodc" --uid 5987 "nodc"
 
 WORKDIR /opt/scheduler
 COPY ./entrypoint.sh ./
