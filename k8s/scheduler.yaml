@@ -3,6 +3,7 @@ apiVersion: batch/v1
 kind: CronJob
 metadata:
   name: nodc-scheduler-cronjob
+  namespace: nodc
   labels:
     app.kubernetes.io/name: nodc
     app.kubernetes.io/component: scheduler

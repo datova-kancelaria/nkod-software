@@ -2,6 +2,7 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: nodc-graphdb-deployment
+  namespace: nodc
   labels:
     app.kubernetes.io/name: nodc
     app.kubernetes.io/component: graphdb
