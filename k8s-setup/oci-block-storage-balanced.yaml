@@ -3,7 +3,7 @@ kind: StorageClass
 metadata:
   name: oci-block-balanced
   namespace: nodc
-  lebels:
+  labels:
     app.kubernetes.io/name: nodc
 provisioner: blockvolume.csi.oraclecloud.com
 parameters:

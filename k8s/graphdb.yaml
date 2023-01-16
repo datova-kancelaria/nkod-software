@@ -56,7 +56,7 @@ spec:
             runAsGroup: 5987
             runAsNonRoot: true
       imagePullSecrets:
-        - name: ocir-secret
+        - name: oci-registry-secret
 ---
 apiVersion: v1
 kind: Service
