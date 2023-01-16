@@ -11,5 +11,5 @@ spec:
   storageClassName: ""
   resources:
     requests:
-      storage: 4i
+      storage: 4Gi
   volumeName: nodc-registration-pv
