@@ -18,10 +18,10 @@ spec:
           volumes:
             - name: nodc-linkedpipes-volume
               persistentVolumeClaim:
-                claimName: nodc-linkedpipes-claim
+                claimName: nodc-linkedpipes-storage-pvc
             - name: nodc-registration-volume
               persistentVolumeClaim:
-                claimName: nodc-registration-claim
+                claimName: nodc-registration-pvc
           containers:
           - name: nodc-linkedpipes-executor
             image: ghcr.io/datova-kancelaria/nodc_scheduler:latest
@@ -57,18 +57,3 @@ spec:
               volumeMounts:
                 - mountPath: "/data/registration/"
                   name: nodc-registration-volume
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: nodc-registration-claim
-  labels:
-    app.kubernetes.io/name: nodc
-spec:
-  accessModes:
-    - ReadWriteMany
-  storageClassName: ""
-  resources:
-    requests:
-      storage: 2Gi
-  volumeName: nodc-registration-pv

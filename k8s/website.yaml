@@ -20,7 +20,7 @@ spec:
       volumes:
         - name: nodc-website-volume
           persistentVolumeClaim:
-            claimName: nodc-website-claim
+            claimName: nodc-website-pvc
       containers:
         - name: nodc-website
           image: ghcr.io/datova-kancelaria/nodc_website:latest
@@ -30,18 +30,3 @@ spec:
           volumeMounts:
             - mountPath: "/data/website/"
               name: nodc-website-volume
----
-apiVersion: v1
-kind: PersistentVolumeClaim
-metadata:
-  name: nodc-website-claim
-  labels:
-    app.kubernetes.io/name: nodc
-spec:
-  accessModes:
-    - ReadWriteMany
-  storageClassName: ""
-  resources:
-    requests:
-      storage: 16Gi
-  volumeName: nodc-website-pv

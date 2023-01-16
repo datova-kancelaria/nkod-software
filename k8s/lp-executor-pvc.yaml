@@ -1,0 +1,13 @@
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: nodc-linkedpipes-executor-pvc
+  labels:
+    app.kubernetes.io/name: nodc
+spec:
+  accessModes:
+    - ReadWriteOnce
+  storageClassName: oci-block-balanced
+  resources:
+    requests:
+      storage: 256Gi

@@ -17,18 +17,16 @@ spec:
         app.kubernetes.io/name: nodc
         app.kubernetes.io/component: linkedpipes.executor
     spec:
-      securityContext:
-        fsGroup: 5987
       volumes:
         - name: nodc-executor-volume
           persistentVolumeClaim:
-            claimName: nodc-linkedpipes-claim
+            claimName: nodc-linkedpipes-executor-pvc
         - name: nodc-registration-volume
           persistentVolumeClaim:
-            claimName: nodc-registration-claim
+            claimName: nodc-registration-pvc
         - name: nodc-website-volume
           persistentVolumeClaim:
-            claimName: nodc-website-claim
+            claimName: nodc-website-pvc
       containers:
         - name: nodc-linkedpipes-executor
           image: linkedpipes/etl-executor:main
@@ -46,7 +44,7 @@ spec:
               valueFrom:
                 secretKeyRef:
                   name: nodc-secret
-                  key: GRAPHDB_PASSWORD
+                  key: graphdb.password
                   optional: false
             - name: LP_ETL_GRAPHDB_URL
               value: "http://nodc-graphdb:7200"

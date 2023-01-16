@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: nodc-linkedpipes-claim
+  name: nodc-website-pvc
   labels:
     app.kubernetes.io/name: nodc
 spec:
@@ -10,5 +10,5 @@ spec:
   storageClassName: ""
   resources:
     requests:
-      storage: 256Gi
-  volumeName: nodc-linkedpipes-pv
+      storage: 64Gi
+  volumeName: nodc-website-pv

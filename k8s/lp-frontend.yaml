@@ -31,6 +31,8 @@ spec:
           ports:
             - containerPort: 8080
           securityContext:
+            runAsUser: 5987
+            runAsGroup: 5987
             runAsNonRoot: true
 ---
 apiVersion: v1

@@ -17,12 +17,10 @@ spec:
         app.kubernetes.io/name: nodc
         app.kubernetes.io/component: linkedpipes.storage
     spec:
-      securityContext:
-        fsGroup: 5987
       volumes:
         - name: nodc-storage-volume
           persistentVolumeClaim:
-            claimName: nodc-linkedpipes-claim
+            claimName: nodc-linkedpipes-storage-pvc
       containers:
         - name: nodc-linkedpipes-storage
           image: linkedpipes/etl-storage:develop

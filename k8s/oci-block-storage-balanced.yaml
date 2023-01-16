@@ -1,0 +1,12 @@
+apiVersion: storage.k8s.io/v1
+kind: StorageClass
+metadata:
+  name: oci-block-balanced
+  lebels:
+    app.kubernetes.io/name: nodc
+provisioner: blockvolume.csi.oraclecloud.com
+parameters:
+  vpusPerGB: "10"
+reclaimPolicy: Retain
+volumeBindingMode: WaitForFirstConsumer
+allowVolumeExpansion: true
