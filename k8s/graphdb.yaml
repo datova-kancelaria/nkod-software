@@ -57,6 +57,13 @@ spec:
             runAsNonRoot: true
       imagePullSecrets:
         - name: oci-registry-secret
+      initContainers:
+        - name: set-data-ownership
+          image: alpine:3.17.0
+          command: ["chown", "5987:5987", "/data/graphdb/"]
+          volumeMounts:
+            - mountPath: "/data/graphdb/"
+              name: nodc-graphdb-volume
 ---
 apiVersion: v1
 kind: Service
