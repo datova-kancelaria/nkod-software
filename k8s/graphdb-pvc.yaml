@@ -8,7 +8,7 @@ metadata:
 spec:
   accessModes:
     - ReadWriteOnce
-  storageClassName: oci-block-high
+  storageClassName: oci-block-balanced
   resources:
     requests:
       storage: 16Gi
