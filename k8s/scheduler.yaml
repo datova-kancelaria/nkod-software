@@ -9,6 +9,9 @@ metadata:
     app.kubernetes.io/component: scheduler
 spec:
   # https://crontab.guru/
+  # Keep in mind this is server (k8s provide) time not your time. 
+  # There is beta feature to plan using Time zones yet not in stable:
+  # https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/#time-zones
   schedule: "7 22 * * *"  
   failedJobsHistoryLimit: 2
   successfulJobsHistoryLimit: 3
