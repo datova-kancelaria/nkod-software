@@ -12,4 +12,4 @@ spec:
   resources:
     requests:
       storage: 4Gi
-  volumeName: nodc-storage-pv
+  volumeName: nodc-linkedpipes-storage-pv
