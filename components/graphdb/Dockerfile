@@ -24,6 +24,7 @@ ENV PATH=/opt/graphdb/dist/bin:$PATH
 
 RUN addgroup --gid 5987 "nodc" \
     && useradd --gid "nodc" --uid 5987 "nodc"
+RUN chown -R nodc:nodc /opt/graphdb/
 
 WORKDIR /opt/
 

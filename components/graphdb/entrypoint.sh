@@ -11,7 +11,7 @@ sed -i \
   -e "s|{PASSWORD_BCRYPT}|$PASSWORD_BCRYPT|g" \
   /opt/graphdb/home/work/workbench/settings.js
 
-echo "graphdb.external-url = $GRAPHDB_EXTERNAL_URL\n" >> /opt/graphdb/home/conf/graphdb.properties
+printf "graphdb.external-url = $GRAPHDB_EXTERNAL_URL\n" >> /opt/graphdb/home/conf/graphdb.properties
 
 # Prepare data directory
 mkdir -p /data/graphdb
