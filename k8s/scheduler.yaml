@@ -9,7 +9,7 @@ metadata:
     app.kubernetes.io/component: scheduler
 spec:
   # https://crontab.guru/
-  schedule: "17 4 * * *"  
+  schedule: "7 22 * * *"  
   failedJobsHistoryLimit: 2
   successfulJobsHistoryLimit: 3
   jobTemplate:
@@ -29,13 +29,24 @@ spec:
             imagePullPolicy: Always
             env:
               - name: STORAGE_REPOSITORY
-                value: "https://github.com/datova-kancelaria/nkod-pipeline.git"
-              - name: RELOAD_URL
-                value: "http://nodc-storage:8083/api/v1/management/reload"
-              - name: EXECUTE_PIPELINE_URL
-                value: "http://nodc-frontend:8080/api/v1/executions?pipeline=https://sk-nkod.opendata.cz/etl/resources/pipelines/1651823973959"
+                valueFrom:
+                  configMapKeyRef:
+                    name: nodc-configuration
+                    key: scheduler.pipelineRepository
+              - name: STORAGE_URL
+                value: "http://nodc-storage:8083"
+              - name: FRONTEND_URL
+                value: "http://nodc-frontend:8080"
+              - name: PIPELINE_URL
+                valueFrom:
+                  configMapKeyRef:
+                    name: nodc-configuration
+                    key: scheduler.pipelineToExecute
               - name: PIPELINE_REPOSITORY
-                value: "https://github.com/datova-kancelaria/nkod-registrace.git"
+                valueFrom:
+                  configMapKeyRef:
+                    name: nodc-configuration
+                    key: scheduler.registrationRepository
             volumeMounts:
               - mountPath: "/data/lp-etl/"
                 name: nodc-linkedpipes-volume

@@ -44,10 +44,10 @@ rm -rf /tmp/storage/
 
 # Execute a POST 
 echo "Reload LinkedPipes ETL"
-curl -X POST $RELOAD_URL
+curl -X POST "$STORAGE_URL/api/v1/management/reload"
 
 # Execute a POST to given URL to start the execution. 
 # This may actually fail for the first time as the storage
 # do not reload data on demand.
 echo "Start pipeline"
-curl -X POST $EXECUTE_PIPELINE_URL
+curl -X POST "$FRONTEND_URL/api/v1/executions?pipeline=$PIPELINE_URL"

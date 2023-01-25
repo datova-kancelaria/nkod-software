@@ -15,8 +15,9 @@ RUN chmod +x ./entrypoint.sh \
 USER nodc
 
 ENV STORAGE_REPOSITORY=""
-ENV RELOAD_URL=""
-ENV EXECUTE_PIPELINE_URL=""
+ENV STORAGE_RELOAD_URL=""
+ENV FRONTEND_URL=""
+ENV PIPELINE_URL=""
 ENV PIPELINE_REPOSITORY=""
 
 CMD ["/opt/scheduler/entrypoint.sh"]
