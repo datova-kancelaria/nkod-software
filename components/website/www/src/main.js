@@ -29,9 +29,9 @@ function createYasgui(language) {
   yasgui = new Yasgui(document.getElementById("yasgui"), {
     "requestConfig": {
       "endpoint": () => resolveRelativeUrl("api/sparql"),
-      "method": "GET"
     },
-    "copyEndpointOnNewTab": false
+    "copyEndpointOnNewTab": false,
+    "method": "GET"
   });
 }
 
