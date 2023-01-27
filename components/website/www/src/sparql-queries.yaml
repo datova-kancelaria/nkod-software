@@ -5,13 +5,13 @@ content:
       de: Datensätze auswählen
       en: 100 datasets and their publishers
       hu: Válassza ki az adatkészleteket
-      sk: 100 datasetů a jejich poskytovatelů
+      sk: 100 datasetov a ich poskytovateľov
       uk: Виберіть набори даних
     description:
       de: Namen von Datensätzen
       en: 100 datasets and their publishers
       hu: Adatkészletek nevei
-      sk: 100 datasetů a jejich poskytovatelů
+      sk: 100 datasetov a ich poskytovateľov
       uk: Назви наборів даних
     query: |
       PREFIX dcat: <http://www.w3.org/ns/dcat#>
@@ -57,3 +57,128 @@ content:
       }
       GROUP BY ?katalog ?nazev
       ORDER BY DESC(?pocet)
+  - name: 
+      de: Anzahl der Datensätze pro Herausgeber
+      en: Numbers of datasets per publisher
+      hu: Adatkészletek száma kiadónként
+      sk: Počet datasetov na poskytovateľa
+      uk: Кількість наборів даних на видавця
+    description:
+      de: Anzahl der Datensätze pro Herausgeber
+      en: Numbers of datasets per publisher
+      hu: Adatkészletek száma kiadónként
+      sk: Počet datasetov na poskytovateľa
+      uk: Кількість наборів даних на видавця
+    query: |
+      PREFIX dcat: <http://www.w3.org/ns/dcat#>
+      PREFIX dct: <http://purl.org/dc/terms/>
+      PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+
+      SELECT ?poskytovatel (COUNT(DISTINCT ?dataset) AS ?pocet) WHERE {
+        GRAPH ?g {
+          ?dataset a dcat:Dataset;
+            dct:publisher/foaf:name ?poskytovatel.
+          FILTER(langMatches(LANG(?poskytovatel), "sk"))
+        }
+      }
+      GROUP BY ?poskytovatel      
+      ORDER BY DESC(?pocet)
+  - name: 
+      de: Daten in CSV
+      en: Data in CSV
+      hu: Adatok az CSV-ben
+      sk: Dáta v CSV
+      uk: Дані в CSV
+    description:
+      de: Datensätze mit Verteilungen in CSV
+      en: Datasets with distributions in CSV
+      hu: Adatkészletek terjesztésekkel az CSV-ben
+      sk: Datasety s distribúciami v CSV
+      uk: Набори даних із дистрибутивами в CSV
+    query: |
+      PREFIX dcterms: <http://purl.org/dc/terms/>
+      PREFIX dcat: <http://www.w3.org/ns/dcat#>
+      PREFIX dct: <http://purl.org/dc/terms/>
+      PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+      PREFIX format: <http://publications.europa.eu/resource/authority/file-type/>
+
+      SELECT ?dataset ?nazev ?poskytovatel ?downloadURL WHERE {
+        GRAPH ?g {
+          ?dataset a dcat:Dataset;
+            dcterms:title ?nazev ;
+            dct:publisher/foaf:name ?poskytovatel ;
+            dcat:distribution ?distribution .
+          ?distribution a dcat:Distribution ;
+            dcat:downloadURL ?downloadURL ;
+            dcterms:format format:CSV .
+          FILTER(langMatches(LANG(?poskytovatel), "sk"))
+          FILTER(langMatches(LANG(?nazev), "sk"))
+        }
+      }
+      ORDER BY ?nazev
+      LIMIT 10
+  - name: 
+      de: Nichtverfügbarkeit von herunterladbaren Dateien
+      en: Unavailability of downloadable files
+      hu: A letölthető fájlok elérhetetlensége
+      sk: Nedostupnosť stiahnuteľných súborov
+      uk: Недоступність файлів для завантаження
+    description:
+      de: Nichtverfügbarkeit herunterladbarer Dateien basierend auf Qualitätsmessungen
+      en: Unavailability of downloadable files based on quality measurements
+      hu: A letölthető fájlok elérhetetlensége minőségi mérések alapján
+      sk: Nedostupnosť stiahnuteľných súborov na základe meraní kvality
+      uk: Недоступність файлів для завантаження на основі вимірювань якості
+    query: |
+      PREFIX dcterms: <http://purl.org/dc/terms/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+      PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+      PREFIX dqv: <http://www.w3.org/ns/dqv#>
+      PREFIX qb: <http://purl.org/linked-data/cube#>
+      PREFIX sdmx-dimension: <http://purl.org/linked-data/sdmx/2009/dimension#>
+
+      PREFIX : <https://data.gov.sk/def/observation/data-quality/metrics/>
+
+      SELECT ?jméno_poskytovatele (MAX(?procento_distribucí_nedostupných_0) AS ?procento_distribucí_nedostupných) (MAX(?počet_distribucí_se_souborem_nedostupných_0) AS ?počet_distribucí_se_souborem_nedostupných) (MAX(?počet_distribucí_se_souborem_celkem_0) AS ?počet_distribucí_se_souborem_celkem)
+      WHERE 
+      {
+        <https://data.gov.sk/set/catalog/nkod> dcterms:modified ?date .
+        BIND("http://reference.data.gov.uk/id/gregorian-day/" as ?datePrefix)
+        BIND(IRI(CONCAT(?datePrefix, STR(?date))) AS ?period)
+        
+        OPTIONAL {?poskytovatel foaf:name ?jméno_poskytovatele . }
+        FILTER(BOUND(?jméno_poskytovatele) && langMatches(LANG(?jméno_poskytovatele), "sk"))
+
+        {
+          SELECT ?poskytovatel ?period (0 AS ?počet_distribucí_se_souborem_celkem_0) (0 AS ?počet_distribucí_se_souborem_nedostupných_0) ?procento_distribucí_nedostupných_0
+          WHERE {
+            [] a qb:Observation, dqv:QualityMeasurement ;
+                                dqv:computedOn ?poskytovatel ;
+                                sdmx-dimension:refPeriod ?period ;
+                                dqv:isMeasurementOf :ProcentoDistribucíDatovýchSadSNedostupnýmSouboremKeStažení ;
+                                dqv:value ?procento_distribucí_nedostupných_0 .
+          }
+        } UNION {
+          SELECT ?poskytovatel ?period (0 AS ?počet_distribucí_se_souborem_celkem_0) ?počet_distribucí_se_souborem_nedostupných_0 (0 AS ?procento_distribucí_nedostupných_0)
+          WHERE {
+            [] a qb:Observation, dqv:QualityMeasurement ;
+                                dqv:computedOn ?poskytovatel ;
+                                sdmx-dimension:refPeriod ?period ;
+                                dqv:isMeasurementOf :PočetDistribucíDatovýchSadSNedostupnýmSouboremKeStažení ;
+                                dqv:value ?počet_distribucí_se_souborem_nedostupných_0 .
+          }
+        } UNION {
+          SELECT ?poskytovatel ?period ?počet_distribucí_se_souborem_celkem_0 (0 AS ?počet_distribucí_se_souborem_nedostupných_0) (0 AS ?procento_distribucí_nedostupných_0)
+          WHERE {
+            [] a qb:Observation, dqv:QualityMeasurement ;
+                                dqv:computedOn ?poskytovatel ;
+                                sdmx-dimension:refPeriod ?period ;
+                                dqv:isMeasurementOf :PočetDistribucíDatovýchSadSouborKeStažení ;
+                                dqv:value ?počet_distribucí_se_souborem_celkem_0 .
+          }
+        }  
+      }
+      GROUP BY ?jméno_poskytovatele
+      HAVING(?počet_distribucí_se_souborem_nedostupných > 0)
+      ORDER BY DESC(?procento_distribucí_nedostupných) DESC(?počet_distribucí_se_souborem_nedostupných) ?jméno_poskytovatele
