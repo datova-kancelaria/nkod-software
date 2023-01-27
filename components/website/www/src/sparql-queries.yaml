@@ -29,7 +29,7 @@ content:
       }
       ORDER BY ?nazev
       LIMIT 100
-- name: 
+  - name: 
       de: Liste der lokalen Datenkataloge
       en: List of local data catalogs
       hu: Helyi adatkatalógusok listája
