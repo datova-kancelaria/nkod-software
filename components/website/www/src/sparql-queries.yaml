@@ -3,25 +3,57 @@ version: 1
 content:
   - name: 
       de: Datensätze auswählen
-      en: Select datasets
+      en: 100 datasets and their publishers
       hu: Válassza ki az adatkészleteket
-      sk: Vyberte množiny údajov
+      sk: 100 datasetů a jejich poskytovatelů
       uk: Виберіть набори даних
     description:
       de: Namen von Datensätzen
-      en: Names of datasets
+      en: 100 datasets and their publishers
       hu: Adatkészletek nevei
-      sk: Názvy súborov údajov
+      sk: 100 datasetů a jejich poskytovatelů
       uk: Назви наборів даних
     query: |
       PREFIX dcat: <http://www.w3.org/ns/dcat#>
       PREFIX dct: <http://purl.org/dc/terms/>
       PREFIX foaf: <http://xmlns.com/foaf/0.1/>
       
-      SELECT DISTINCT ?poskytovatel ?datova_sada ?nazev WHERE {
+      SELECT DISTINCT ?dataset ?nazev ?poskytovatel WHERE {
         GRAPH ?g {
-          ?datova_sada a dcat:Dataset;
+          ?dataset a dcat:Dataset;
             dct:title ?nazev;
             dct:publisher/foaf:name ?poskytovatel.
+            FILTER(langMatches(LANG(?nazev), "sk"))
+            FILTER(langMatches(LANG(?poskytovatel), "sk"))
         }
-      } LIMIT 100
+      }
+      ORDER BY ?nazev
+      LIMIT 100
+- name: 
+      de: Liste der lokalen Datenkataloge
+      en: List of local data catalogs
+      hu: Helyi adatkatalógusok listája
+      sk: Zoznam lokálnych katalógov údajov
+      uk: Список локальних каталогів даних
+    description:
+      de: Liste der lokalen Datenkataloge und Anzahl der darin enthaltenen Datensätze
+      en: List of local data catalogs and numbers of datasets in them
+      hu: A helyi adatkatalógusok listája és a bennük lévő adatkészletek száma
+      sk: Zoznam lokálnych dátových katalógov a počty dátových sád v nich
+      uk: Список локальних каталогів даних і номери наборів даних у них
+    query: |
+      PREFIX dcat: <http://www.w3.org/ns/dcat#>
+      PREFIX dct: <http://purl.org/dc/terms/>
+      PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+
+      SELECT DISTINCT ?katalog ?nazev (COUNT(DISTINCT ?dataset) AS ?pocet)
+      WHERE {
+        ?katalog a dcat:Catalog ;
+          dct:title ?nazev;
+          dcat:dataset ?dataset .
+        FILTER(langMatches(LANG(?nazev), "sk"))
+      # kromě NKOD
+        FILTER(?katalog != <https://data.gov.sk/set/catalog/nkod>)
+      }
+      GROUP BY ?katalog ?nazev
+      ORDER BY DESC(?pocet)
