@@ -5,7 +5,7 @@ set -e
 echo "New run started: $(date)" 
 
 #
-# Registrations
+# Update registrations
 #
 
 # Prevent detected dubious ownership in repository
@@ -27,7 +27,7 @@ git reset --hard HEAD
 git pull
 
 #
-# LinkedPipes ETL
+# Update LinkedPipes ETL pipelines and templates
 #
 
 echo "Clone pipeline and templates definitions"
@@ -42,7 +42,10 @@ cp -r ./templates /data/lp-etl/storage/
 echo "Remove temporary data"
 rm -rf /tmp/storage/
 
-# Execute a POST 
+#
+# Reload LinkedPipes ETL and execute the pipeline
+#
+
 echo "Reload LinkedPipes ETL"
 curl -X POST "$STORAGE_URL/api/v1/management/reload"
 

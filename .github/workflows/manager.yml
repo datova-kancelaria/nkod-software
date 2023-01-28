@@ -2,7 +2,7 @@ name: publish-scheduler
 on:
   push:
     paths:
-      - "components/scheduler/**"
+      - "components/manager/**"
     branches:
       - 'main'
 jobs:
@@ -19,9 +19,9 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
-      - name: Publish scheduler
+      - name: Publish manager
         uses: docker/build-push-action@v3
         with:
-          context: ./components/scheduler/
+          context: ./components/manager/
           push: true
-          tags: ghcr.io/datova-kancelaria/nodc_scheduler:latest
+          tags: ghcr.io/datova-kancelaria/nodc_manager:latest

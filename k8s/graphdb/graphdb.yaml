@@ -50,7 +50,7 @@ spec:
               valueFrom:
                 configMapKeyRef:
                   name: nodc-configuration
-                  key: graphdb.publicUrl
+                  key: graphdb.external-url
           securityContext:
             runAsUser: 5987
             runAsGroup: 5987

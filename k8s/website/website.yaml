@@ -22,12 +22,28 @@ spec:
         - name: nodc-website-volume
           persistentVolumeClaim:
             claimName: nodc-website-pvc
+        - name: nginx-configs
+          configMap:
+            name: nodc-configuration
+            items:
+              - name: website.nginx
+                path: default.yaml
+        - name: nginx-certs
+          secret:
+            name: nodc-https
       containers:
         - name: nodc-website
           image: ghcr.io/datova-kancelaria/nodc_website:latest
           imagePullPolicy: Always
           ports:
-            - containerPort: 8090
+            - containerPort: 80
+            - containerPort: 443
           volumeMounts:
             - mountPath: "/data/website/"
               name: nodc-website-volume
+            - name: nginx-configs
+              mountPath: /etc/nginx/conf.d/
+            - name: nginx-certs
+              mountPath: /etc/nginx/certs/
+
+  

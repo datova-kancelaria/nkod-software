@@ -1,0 +1,32 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: nodc-certificate-initialize-job
+  namespace: nodc
+  labels:
+    app.kubernetes.io/name: nodc
+    app.kubernetes.io/component: website
+    app.kubernetes.io/part-of: certificate-manager
+spec:
+  template:
+    spec:
+      labels:
+        app.kubernetes.io/name: nodc
+        app.kubernetes.io/component: website    
+        app.kubernetes.io/part-of: certificate-manager
+      volumes:
+        - name: nginx-certs
+          secret:
+            name: nodc-https
+      containers:
+        - name: certbot
+          image: certbot/certbot:v2.2.0
+          command: ["certonly"]
+          args: ["--cert-path", "/opt/letsencrypt/tls.crt", "--key-path", "/opt/letsencrypt/tls.ket"]
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: nginx-certs
+              mountPath: /opt/letsencrypt/
+      restartPolicy: Never

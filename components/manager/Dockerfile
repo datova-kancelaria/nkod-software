@@ -6,7 +6,7 @@ RUN apt-get update \
 RUN addgroup --gid 5987 "nodc" \
     && useradd -m --gid "nodc" --uid 5987 "nodc"
 
-WORKDIR /opt/scheduler
+WORKDIR /opt/manager
 COPY ./entrypoint.sh ./
 
 RUN chmod +x ./entrypoint.sh \
@@ -20,4 +20,4 @@ ENV FRONTEND_URL=""
 ENV PIPELINE_URL=""
 ENV PIPELINE_REPOSITORY=""
 
-CMD ["/opt/scheduler/entrypoint.sh"]
+CMD ["/opt/manager/entrypoint.sh"]

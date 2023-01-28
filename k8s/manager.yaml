@@ -2,17 +2,18 @@
 apiVersion: batch/v1
 kind: CronJob
 metadata:
-  name: nodc-scheduler-cronjob
+  name: nodc-manager-cronjob
   namespace: nodc
   labels:
     app.kubernetes.io/name: nodc
-    app.kubernetes.io/component: scheduler
+    app.kubernetes.io/component: manager
 spec:
   # https://crontab.guru/
   # Keep in mind this is server (k8s provide) time not your time. 
   # There is beta feature to plan using Time zones yet not in stable:
   # https://kubernetes.io/docs/concepts/workloads/controllers/cron-jobs/#time-zones
-  schedule: "7 22 * * *"  
+  # By default the time is in UTC+0
+  schedule: "7 21 * * *"  
   failedJobsHistoryLimit: 2
   successfulJobsHistoryLimit: 3
   jobTemplate:
@@ -28,14 +29,14 @@ spec:
                 claimName: nodc-registration-pvc
           containers:
           - name: nodc-linkedpipes-executor
-            image: ghcr.io/datova-kancelaria/nodc_scheduler:latest
+            image: ghcr.io/datova-kancelaria/nodc_manager:latest
             imagePullPolicy: Always
             env:
               - name: STORAGE_REPOSITORY
                 valueFrom:
                   configMapKeyRef:
                     name: nodc-configuration
-                    key: scheduler.pipelineRepository
+                    key: manager.pipelineRepository
               - name: STORAGE_URL
                 value: "http://nodc-storage:8083"
               - name: FRONTEND_URL
@@ -44,12 +45,12 @@ spec:
                 valueFrom:
                   configMapKeyRef:
                     name: nodc-configuration
-                    key: scheduler.pipelineToExecute
+                    key: manager.pipelineToExecute
               - name: PIPELINE_REPOSITORY
                 valueFrom:
                   configMapKeyRef:
                     name: nodc-configuration
-                    key: scheduler.registrationRepository
+                    key: manager.registrationRepository
             volumeMounts:
               - mountPath: "/data/lp-etl/"
                 name: nodc-linkedpipes-volume
