@@ -19,19 +19,19 @@ spec:
         app.kubernetes.io/part-of: certificate-manager
     spec:
       volumes:
-        - name: nginx-certs
-          secret:
-            secretName: nodc-https
+        - name: nodc-certificate
+          persistentVolumeClaim:
+            claimName: nodc-certificate-pvc
       containers:
         - name: certbot
           image: certbot/certbot:v2.2.0
-          args: ["certonly", "--agree-tos" , "--cert-path", "/opt/letsencrypt/tls.crt", "--key-path", "/opt/letsencrypt/tls.key", "-m", "$(EMAIL)", "--non-interactive", "-d", "$(DOMAIN)"]
+          args: ["certonly", "--agree-tos" ,"--non-interactive", "--standalone", "-m", "$(EMAIL)", "-d", "$(DOMAIN)", "--cert-name", "https"]
           imagePullPolicy: Always
           ports:
             - containerPort: 80
           volumeMounts:
-            - name: nginx-certs
-              mountPath: /opt/letsencrypt/
+            - name: nodc-certificate
+              mountPath: /opt/letsencrypt/live/
           env:
             - name: EMAIL
               valueFrom:

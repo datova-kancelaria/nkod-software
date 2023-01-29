@@ -26,11 +26,11 @@ spec:
           configMap:
             name: nodc-nginx
             items:
-              - name: website.nginx
+              - key: website.nginx
                 path: default.yaml
-        - name: nginx-certs
-          secret:
-            secretName: nodc-https
+        - name: nodc-certificate
+          persistentVolumeClaim:
+            claimName: nodc-certificate-pvc
       containers:
         - name: nodc-website
           image: ghcr.io/datova-kancelaria/nodc_website:latest
@@ -43,7 +43,6 @@ spec:
               name: nodc-website-volume
             - name: nginx-configs
               mountPath: /etc/nginx/conf.d/
-            - name: nginx-certs
-              mountPath: /etc/nginx/certs/
-
+            - name: nodc-certificate
+              mountPath: /etc/certs/
   
