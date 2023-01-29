@@ -28,15 +28,15 @@ spec:
               persistentVolumeClaim:
                 claimName: nodc-certificate-pvc
           containers:
-            - name: certbot
-              image: certbot/certbot:v2.2.0
-              args: ["certonly", "--agree-tos" ,"--non-interactive", "--standalone", "-m", "$(EMAIL)", "-d", "$(DOMAIN)", "--cert-name", "nodc"]
+            - name: certificate-manager
+              image: ghcr.io/datova-kancelaria/nodc_certificate-manager:latest
+              args: ["update.sh"]
               imagePullPolicy: Always
               ports:
                 - containerPort: 80
               volumeMounts:
                 - name: nodc-certificate
-                  mountPath: /etc/letsencrypt/
+                  mountPath: /opt/letsencrypt/
               env:
                 - name: EMAIL
                   valueFrom:

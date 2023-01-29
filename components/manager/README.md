@@ -1,12 +1,11 @@
-# Scheduler 
-Scheduler allow for harvesting execution.
+# Manager 
+Manager manager harvesting.
 This component should be executed automatically in required time.
 
 Execution of this image include:
 * Synchronization of LP:ETL pipelines and pipelines
+* Synchronization of registration records
 * Execution of selected pipeline
-
-In addition, and temporarily, this component synchronize Git repository with registrations.
 
 ## Environment variables
 * *STORAGE_REPOSITORY* - URL of repository with LP:ETL pipelines and components.
