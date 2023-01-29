@@ -36,7 +36,7 @@ spec:
                 - containerPort: 80
               volumeMounts:
                 - name: nodc-certificate
-                  mountPath: /opt/letsencrypt/live/
+                  mountPath: /etc/letsencrypt/live/
               env:
                 - name: EMAIL
                   valueFrom:
