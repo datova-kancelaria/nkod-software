@@ -25,13 +25,13 @@ spec:
       containers:
         - name: certbot
           image: certbot/certbot:v2.2.0
-          args: ["certonly", "--agree-tos" ,"--non-interactive", "--standalone", "-m", "$(EMAIL)", "-d", "$(DOMAIN)", "--cert-name", "https"]
+          args: ["certonly", "--agree-tos" ,"--non-interactive", "--standalone", "-m", "$(EMAIL)", "-d", "$(DOMAIN)", "--cert-name", "nodc"]
           imagePullPolicy: Always
           ports:
             - containerPort: 80
           volumeMounts:
             - name: nodc-certificate
-              mountPath: /etc/letsencrypt/live/
+              mountPath: /etc/letsencrypt/
           env:
             - name: EMAIL
               valueFrom:
