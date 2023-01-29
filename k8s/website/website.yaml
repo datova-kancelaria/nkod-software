@@ -27,7 +27,7 @@ spec:
             name: nodc-nginx
             items:
               - key: website.nginx
-                path: default.yaml
+                path: default.conf
         - name: nodc-certificate
           persistentVolumeClaim:
             claimName: nodc-certificate-pvc
