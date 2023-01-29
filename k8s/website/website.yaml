@@ -30,7 +30,7 @@ spec:
                 path: default.yaml
         - name: nginx-certs
           secret:
-            name: nodc-https
+            secretName: nodc-https
       containers:
         - name: nodc-website
           image: ghcr.io/datova-kancelaria/nodc_website:latest

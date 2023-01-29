@@ -26,7 +26,7 @@ spec:
           volumes:
             - name: nginx-certs
               secret:
-                name: nodc-https
+                secretName: nodc-https
           containers:
             - name: certbot
               image: certbot/certbot:v2.2.0
