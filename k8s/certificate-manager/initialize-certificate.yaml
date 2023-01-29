@@ -17,12 +17,22 @@ spec:
       containers:
         - name: certbot
           image: certbot/certbot:v2.2.0
-          command: ["certonly"]
-          args: ["--cert-path", "/opt/letsencrypt/tls.crt", "--key-path", "/opt/letsencrypt/tls.ket"]
+          args: ["certonly", "--agree-tos" , "--cert-path", "/opt/letsencrypt/tls.crt", "--key-path", "/opt/letsencrypt/tls.key", "-m", "$(EMAIL)", "--non-interactive", "-d", "$(DOMAIN)"]
           imagePullPolicy: Always
           ports:
             - containerPort: 80
           volumeMounts:
             - name: nginx-certs
               mountPath: /opt/letsencrypt/
+          env:
+            - name: EMAIL
+              valueFrom:
+                configMapKeyRef:
+                  name: nodc-configuration
+                  key: letsencrypt.email
+            - name: DOMAIN
+              valueFrom:
+                configMapKeyRef:
+                  name: nodc-configuration
+                  key: letsencrypt.domain
       restartPolicy: Never
