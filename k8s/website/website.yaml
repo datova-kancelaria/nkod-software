@@ -24,7 +24,7 @@ spec:
             claimName: nodc-website-pvc
         - name: nginx-configs
           configMap:
-            name: nodc-configuration
+            name: nodc-nginx
             items:
               - name: website.nginx
                 path: default.yaml
