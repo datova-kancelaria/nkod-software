@@ -9,4 +9,4 @@ COPY ./update.sh ./
 RUN chmod u+x ./update.sh
 
 EXPOSE 80
-ENTRYPOINT ["bash"]
+ENTRYPOINT ["sh"]

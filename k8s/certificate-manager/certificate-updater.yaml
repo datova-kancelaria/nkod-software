@@ -30,7 +30,7 @@ spec:
           containers:
             - name: certificate-manager
               image: ghcr.io/datova-kancelaria/nodc_certificate-manager:latest
-              args: ["update.sh"]
+              args: ["./update.sh"]
               imagePullPolicy: Always
               ports:
                 - containerPort: 80
