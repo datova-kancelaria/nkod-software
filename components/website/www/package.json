@@ -16,10 +16,10 @@
   },
   "devDependencies": {
     "@id-sk/frontend": "^2.10.0",
-    "@parcel/transformer-sass": "^2.8.0",
-    "@parcel/transformer-yaml": "^2.8.0",
-    "copy-files-from-to": "^3.6.0",
-    "parcel": "^2.8.0",
+    "@parcel/transformer-sass": "^2.8.3",
+    "@parcel/transformer-yaml": "^2.8.3",
+    "copy-files-from-to": "^3.8.0",
+    "parcel": "^2.8.3",
     "replace-in-file": "^6.3.5",
     "static-i18n": "^0.2.10"
   },
