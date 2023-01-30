@@ -182,3 +182,21 @@ content:
       GROUP BY ?jméno_poskytovatele
       HAVING(?počet_distribucí_se_souborem_nedostupných > 0)
       ORDER BY DESC(?procento_distribucí_nedostupných) DESC(?počet_distribucí_se_souborem_nedostupných) ?jméno_poskytovatele
+  - name: 
+      de: Anzahl der Datensätze in NKOD
+      en: Number of datasets in NKOD
+      hu: Adatkészletek száma az NKOD-ban
+      sk: Počet datasetov v NKOD
+      uk: Кількість наборів даних у НКОД
+    description:
+      de: Anzahl der Datensätze in NKOD
+      en: Number of datasets in NKOD
+      hu: Adatkészletek száma az NKOD-ban
+      sk: Počet datasetov v NKOD
+      uk: Кількість наборів даних у НКОД
+    query: |
+      PREFIX dcat: <http://www.w3.org/ns/dcat#>
+      SELECT (COUNT (*) AS ?count)
+      WHERE {
+        ?dataset a dcat:Dataset
+      }
