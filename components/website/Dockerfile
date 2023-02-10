@@ -5,7 +5,6 @@ RUN npm ci && npm run i18n && npm run assets && npm run build
 
 FROM nginx:1.22.0
 COPY --from=build /opt/www/dist /usr/share/nginx/html
-COPY ./nginx/default.conf /etc/nginx/conf.d/
-COPY ./nginx/cors.conf /etc/nginx/
+COPY ./nginx/ /etc/nginx/
 
 EXPOSE 8090
