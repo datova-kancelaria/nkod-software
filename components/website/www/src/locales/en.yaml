@@ -7,6 +7,9 @@ header:
   open-lang-menu: Expand the language menu
   close-lang-menu: Hide language menu
   active-language: English
+  banner:
+    content: This is a test version of the SPARQL Endpoint, which will be part of the new open data portal. The data source is still the current data.gov.sk, which is harvested once a day to NKOD.
+    close: Close banner
 main:
   query-examples: Examples of queries
   enter-sparql-query: Enter a SPARQL query

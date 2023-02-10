@@ -7,6 +7,9 @@ header:
   open-lang-menu: Bontsa ki a nyelv menüt
   close-lang-menu: Nyelv menü elrejtése
   active-language: Magyar
+  banner:
+    content: Ez a SPARQL Endpoint tesztverziója, amely az új nyíltadat-portál része lesz. Az adatforrás továbbra is a jelenlegi data.gov.sk, amelyet naponta egyszer gyűjt be az NKOD.
+    close: Zárja be a bannert
 main:
   query-examples: Példák a lekérdezésekre
   enter-sparql-query: Adjon meg egy SPARQL-lekérdezést

@@ -7,6 +7,9 @@ header:
   open-lang-menu: Розгорніть меню мови
   close-lang-menu: Сховати меню мови
   active-language: українська
+  banner:
+    content: Це тестова версія SPARQL Endpoint, яка стане частиною нового порталу відкритих даних. Джерелом даних залишається поточний data.gov.sk, який раз на день збирається до NKOD.
+    close: Закрити банер
 main:
   query-examples: Приклади запитів
   enter-sparql-query: Введіть запит SPARQL

@@ -7,6 +7,9 @@ header:
   open-lang-menu: Rozbaliť jazykové menu
   close-lang-menu: Skryť jazykové menu
   active-language: Slovenčina
+  banner:
+    content: Toto je testovacia verzia SPARQL Endpointu, ktorý bude súčasťou nového portálu otvorených dát. Zdrojom dát je stále súčasný data.gov.sk ktorý sa do NKODu harvestuje raz za deň.
+    close: Zavrieť banner
 main:
   query-examples: Príklady dotazov
   enter-sparql-query: Zadaj SPARQL dotaz
