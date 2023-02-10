@@ -33,7 +33,7 @@ spec:
             claimName: nodc-certificate-pvc
       containers:
         - name: nodc-website
-          image: ghcr.io/datova-kancelaria/nodc_website:latest
+          image: ghcr.io/datova-kancelaria/nodc_website:develop
           imagePullPolicy: Always
           ports:
             - containerPort: 80

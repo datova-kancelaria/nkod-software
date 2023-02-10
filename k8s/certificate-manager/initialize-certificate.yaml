@@ -24,7 +24,7 @@ spec:
             claimName: nodc-certificate-pvc
       containers:
         - name: certificate-manager
-          image: ghcr.io/datova-kancelaria/nodc_certificate-manager:latest
+          image: ghcr.io/datova-kancelaria/nodc_certificate-manager:develop
           args: ["./initialize.sh"]
           imagePullPolicy: Always
           ports:

@@ -24,4 +24,4 @@ jobs:
         with:
           context: ./components/website/
           push: true
-          tags: ghcr.io/datova-kancelaria/nodc_website:latest
+          tags: ghcr.io/datova-kancelaria/nodc_website:${{ github.ref_name }}

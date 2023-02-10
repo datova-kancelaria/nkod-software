@@ -29,7 +29,7 @@ spec:
                 claimName: nodc-registration-pvc
           containers:
           - name: nodc-linkedpipes-executor
-            image: ghcr.io/datova-kancelaria/nodc_manager:latest
+            image: ghcr.io/datova-kancelaria/nodc_manager:develop
             imagePullPolicy: Always
             env:
               - name: STORAGE_REPOSITORY

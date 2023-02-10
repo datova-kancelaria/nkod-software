@@ -24,4 +24,4 @@ jobs:
         with:
           context: ./components/certificate-manager/
           push: true
-          tags: ghcr.io/datova-kancelaria/nodc_certificate-manager:latest
+          tags: ghcr.io/datova-kancelaria/nodc_certificate-manager:${{ github.ref_name }}

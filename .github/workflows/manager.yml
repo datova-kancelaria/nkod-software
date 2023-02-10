@@ -24,4 +24,4 @@ jobs:
         with:
           context: ./components/manager/
           push: true
-          tags: ghcr.io/datova-kancelaria/nodc_manager:latest
+          tags: ghcr.io/datova-kancelaria/nodc_manager:${{ github.ref_name }}
