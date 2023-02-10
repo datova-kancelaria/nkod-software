@@ -4,6 +4,10 @@
   list-style-type: none;
   padding-inline-start: 0;
 
+  // Add scroll bar.
+  height: 20rem;
+  overflow-y: auto;
+
   li {
     margin: 1rem;
 
