@@ -3,7 +3,7 @@ html:
   title: data.gov.sk/sparql
 header:  
   gestor: znalosti.gov.sk
-  headline: Граф знань даних державного управління
+  headline: Кінцева точка SPARQL для Національного каталогу відкритих даних
   open-lang-menu: Розгорніть меню мови
   close-lang-menu: Сховати меню мови
   active-language: українська

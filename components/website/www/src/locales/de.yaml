@@ -3,7 +3,7 @@ html:
   title: data.gov.sk/sparql
 header:  
   gestor: znalosti.gov.sk
-  headline: Knowledge Graph von Daten der öffentlichen Verwaltung
+  headline: SPARQL-Endpunkt für den National Open Data Catalog
   open-lang-menu: Erweitern Sie das Sprachmenü
   close-lang-menu: Sprachmenü ausblenden
   active-language: Deutsch
