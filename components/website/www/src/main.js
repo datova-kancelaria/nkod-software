@@ -5,15 +5,20 @@ import storedQueries from "./sparql-queries.yaml"
 // This language is served from root.
 const defaultLanguage = "sk";
 
-let yasgui;
+const defaultSparqlQuery = `PREFIX dcat: <http://www.w3.org/ns/dcat#>
+SELECT (COUNT (*) AS ?count)
+WHERE {
+  ?dataset a dcat:Dataset
+}
+`;
 
 (function initialize() {
   const language = activeLanguage();
   console.log("initialize:", {language, "api": getApiUrl()});
   createYasgui(language);
   buildQueryList(language);
-  initLanguageMenu(language);
-  initIdSk();
+  initializeLanguageMenu(language);
+  initializeIdSk();
 })();
 
 function getApiUrl() {
@@ -31,8 +36,12 @@ function createYasgui(language) {
       "endpoint": () => resolveRelativeUrl("api/sparql"),
       "method": "GET"
     },
+    "yasqe": {
+      "value": defaultSparqlQuery,
+    },
     "copyEndpointOnNewTab": false,
   });
+  console.log(yasgui);
 }
 
 function resolveRelativeUrl(relativeUrl) {
@@ -76,14 +85,15 @@ function setQueryToActiveTab(query) {
   }
 }
 
-function initLanguageMenu(language) {
+function initializeLanguageMenu(language) {
   const elements = document.getElementsByClassName(
     "idsk-header-web__brand-language-list-item-link");
   for (const element of elements) {
     const elementLanguage = element.dataset.lang;
     if (elementLanguage === language) {
       // Active language just add a class.
-      element.classList.add("idsk-header-web__brand-language-list-item-link--selected");
+      element.classList.add(
+        "idsk-header-web__brand-language-list-item-link--selected");
       element.setAttribute("href", "");
     } else {
       if (elementLanguage === defaultLanguage) {
@@ -104,6 +114,6 @@ function initLanguageMenu(language) {
   }
 }
 
-function initIdSk() {
+function initializeIdSk() {
   initAll();
 }
