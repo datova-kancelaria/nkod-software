@@ -13,4 +13,7 @@ header:
 main:
   query-examples: Példák a lekérdezésekre
   enter-sparql-query: Adjon meg egy SPARQL-lekérdezést
-
+footer:
+  report-issue: Hibát találtál az oldalon?
+  contact-us: Lépjen kapcsolatba velünk
+  back-to-top: Vissza a tetejére

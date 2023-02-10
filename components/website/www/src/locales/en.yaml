@@ -13,3 +13,7 @@ header:
 main:
   query-examples: Examples of queries
   enter-sparql-query: Enter a SPARQL query
+footer:
+  report-issue: Did you find an error on the page?
+  contact-us: Contact us
+  back-to-top: Back to top

@@ -9,7 +9,7 @@ let yasgui;
 
 (function initialize() {
   const language = activeLanguage();
-  console.log({language, "api": getApiUrl()});
+  console.log("initialize:", {language, "api": getApiUrl()});
   createYasgui(language);
   buildQueryList(language);
   initLanguageMenu(language);

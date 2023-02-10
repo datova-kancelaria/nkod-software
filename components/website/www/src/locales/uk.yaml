@@ -13,3 +13,7 @@ header:
 main:
   query-examples: Приклади запитів
   enter-sparql-query: Введіть запит SPARQL
+footer:
+  report-issue: Ви знайшли помилку на сторінці?
+  contact-us: Зв'яжіться з нами
+  back-to-top: Догори

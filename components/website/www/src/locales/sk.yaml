@@ -13,3 +13,7 @@ header:
 main:
   query-examples: Príklady dotazov
   enter-sparql-query: Zadaj SPARQL dotaz
+footer:
+  report-issue: Našli ste na stránke chybu?
+  contact-us: Napíšte nám
+  back-to-top: Hore
