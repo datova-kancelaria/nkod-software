@@ -2,6 +2,8 @@ import { initAll } from '@id-sk/frontend/idsk/all';
 
 import storedQueries from "./sparql-queries.yaml"
 
+let yasgui = null;
+
 // This language is served from root.
 const defaultLanguage = "sk";
 
