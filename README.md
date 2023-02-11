@@ -5,10 +5,10 @@ This repository contains Slovakia National Open Data Catalog (SNODC) [specific c
 Software components are located in the components directory.
 Installation and deployment in described in directories of the respective components.
 The following list briefly describes the components:
- * [GraphDB](./components/graphdb/README.md) 
- * [Registration Updater](./components/registration-updater/README.md) 
- * [Scheduler](./components/scheduler/README.md) 
- * [Website](./components/website/README.md) 
+ * [GraphDB](./components/graphdb/README.md)
+ * [Manager](./components/manager/README.md)
+ * [Website](./components/website/README.md)
+ * [Certificate Manager](./components/certificate-manager/README.md)
 
 All components are published as Docker images into GitHub Docker registry using GitHub action ```publish-docker```.
 
