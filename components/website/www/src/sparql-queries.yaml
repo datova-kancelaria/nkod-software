@@ -200,3 +200,315 @@ content:
       WHERE {
         ?dataset a dcat:Dataset
       }
+  - name: 
+      de: Anzahl der Ausschüttungen ohne Angabe von Nutzungsbedingungen durch Anbieter
+      en: q1
+      hu: A disztribúciók száma a szolgáltató általi felhasználási feltételek megadása nélkül
+      sk: Počet distribúcií bez uvedenia podmienok použitia podľa poskytovateľa
+      uk: Кількість дистрибутивів без зазначення умов використання постачальником
+    description:
+      de: Anzahl der Ausschüttungen ohne Angabe von Nutzungsbedingungen durch Anbieter
+      en: q1
+      hu: A disztribúciók száma a szolgáltató általi felhasználási feltételek megadása nélkül
+      sk: Počet distribúcií bez uvedenia podmienok použitia podľa poskytovateľa
+      uk: Кількість дистрибутивів без зазначення умов використання постачальником
+    query: |
+      PREFIX dcterms: <http://purl.org/dc/terms/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+      PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+      PREFIX dqv: <http://www.w3.org/ns/dqv#>
+      PREFIX qb: <http://purl.org/linked-data/cube#>
+      PREFIX sdmx-dimension: <http://purl.org/linked-data/sdmx/2009/dimension#>
+
+      PREFIX : <https://data.gov.sk/def/observation/data-quality/metrics/>
+
+      SELECT ?jméno_poskytovatele ((100 - MAX(?procento_distribucí_s_podmínkami_0)) AS ?procento) (MAX(?počet_distribucí_bez_podmínek_0) AS ?počet_distribucí_bez_podmínek) (MAX(?počet_distribucí_celkem_0) AS ?počet_distribucí_celkem)
+      WHERE 
+      {
+        <https://data.gov.sk/set/catalog/nkod> dcterms:modified ?date .
+        BIND("http://reference.data.gov.uk/id/gregorian-day/" as ?datePrefix)
+        BIND(IRI(CONCAT(?datePrefix, STR(?date))) AS ?period)
+        
+        OPTIONAL {?poskytovatel foaf:name ?jméno_poskytovatele . }
+        FILTER(BOUND(?jméno_poskytovatele) && langMatches(LANG(?jméno_poskytovatele), "sk"))
+
+        {
+          SELECT ?poskytovatel ?period ?procento_distribucí_s_podmínkami_0 (0 AS ?počet_distribucí_bez_podmínek_0) (0 AS ?počet_distribucí_celkem_0)
+          WHERE {
+            ?pozorováníProcento a qb:Observation, dqv:QualityMeasurement ;
+                                dqv:computedOn ?poskytovatel ;
+                                sdmx-dimension:refPeriod ?period ;
+                                dqv:isMeasurementOf :ProcentoDistribucíDatovýchSadSPodmínkamiUžití ;
+                                dqv:value ?procento_distribucí_s_podmínkami_0 .
+
+          }
+
+        } UNION {
+          SELECT ?poskytovatel ?period (0 AS ?procento_distribucí_s_podmínkami_0) ?počet_distribucí_bez_podmínek_0 (0 AS ?počet_distribucí_celkem_0)
+          WHERE {
+            ?pozorováníBezPodmínek a qb:Observation, dqv:QualityMeasurement ;
+                                dqv:computedOn ?poskytovatel ;
+                                sdmx-dimension:refPeriod ?period ;
+                                dqv:isMeasurementOf :PočetDistribucíDatovýchSadBezPodmínekUžití ;
+                                dqv:value ?počet_distribucí_bez_podmínek_0 .
+
+          }
+
+        } UNION {
+          SELECT ?poskytovatel ?period (0 AS ?procento_distribucí_s_podmínkami_0) (0 AS ?počet_distribucí_bez_podmínek_0) ?počet_distribucí_celkem_0
+          WHERE {
+            ?pozorováníCelkem a qb:Observation, dqv:QualityMeasurement ;
+                                dqv:computedOn ?poskytovatel ;
+                                sdmx-dimension:refPeriod ?period ;
+                                dqv:isMeasurementOf :PočetDistribucíDatovýchSad ;
+                                dqv:value ?počet_distribucí_celkem_0 .
+
+          }
+
+        }
+
+      }
+      GROUP BY ?jméno_poskytovatele
+      HAVING (?počet_distribucí_bez_podmínek > 0)
+      ORDER BY DESC(?procento) DESC(?počet_distribucí_bez_podmínek) ?jméno_poskytovatele
+  - name: 
+      de: Anzahl der Datensätze mit Verteilungen ohne Angabe einer Nutzungslizenz durch Anbieter
+      en: Number of datasets with distributions without terms of use specified by provider
+      hu: Azon adatkészletek száma, amelyek disztribúciókkal rendelkeznek szolgáltatónkénti használati licenc megadása nélkül
+      sk: Počet datasetov s distribúciami bez uvedenia licencie použitia podľa poskytovateľa
+      uk: Кількість наборів даних із розповсюдженням без зазначення ліцензії на використання за постачальником
+    description:
+      de: Anzahl der Datensätze mit Verteilungen ohne Angabe einer Nutzungslizenz durch Anbieter
+      en: Number of datasets with distributions without terms of use specified by provider
+      hu: Azon adatkészletek száma, amelyek disztribúciókkal rendelkeznek szolgáltatónkénti használati licenc megadása nélkül
+      sk: Počet datasetov s distribúciami bez uvedenia licencie použitia podľa poskytovateľa
+      uk: Кількість наборів даних із розповсюдженням без зазначення ліцензії на використання за постачальником
+    query: |
+      PREFIX dcterms: <http://purl.org/dc/terms/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+      PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+      PREFIX dqv: <http://www.w3.org/ns/dqv#>
+      PREFIX qb: <http://purl.org/linked-data/cube#>
+      PREFIX sdmx-dimension: <http://purl.org/linked-data/sdmx/2009/dimension#>
+
+      PREFIX : <https://data.gov.sk/def/observation/data-quality/metrics/>
+
+      SELECT ?jméno_poskytovatele ((100 - MAX(?procento_datových_sad_s_podmínkami_0)) AS ?procento) (MAX(?počet_datových_sad_bez_podmínek_0) AS ?počet_datových_sad_bez_podmínek) (MAX(?počet_datových_sad_celkem_0) AS ?počet_datových_sad_celkem)
+      WHERE 
+      {
+        <https://data.gov.sk/set/catalog/nkod> dcterms:modified ?date .
+        BIND("http://reference.data.gov.uk/id/gregorian-day/" as ?datePrefix)
+        BIND(IRI(CONCAT(?datePrefix, STR(?date))) AS ?period)
+
+        OPTIONAL {?poskytovatel foaf:name ?jméno_poskytovatele . }
+        FILTER(BOUND(?jméno_poskytovatele) && langMatches(LANG(?jméno_poskytovatele), "sk"))
+
+        {
+          SELECT ?poskytovatel ?period ?procento_datových_sad_s_podmínkami_0 (0 AS ?počet_datových_sad_bez_podmínek_0) (0 AS ?počet_datových_sad_celkem_0)
+          WHERE {
+            ?pozorováníProcento a qb:Observation, dqv:QualityMeasurement ;
+                                dqv:computedOn ?poskytovatel ;
+                                sdmx-dimension:refPeriod ?period ;
+                                dqv:isMeasurementOf :ProcentoDatovýchSadSDistribucemiSPodmínkamiUžití ;
+                                dqv:value ?procento_datových_sad_s_podmínkami_0 .
+
+          }
+
+        } UNION {
+          SELECT ?poskytovatel ?period (0 AS ?procento_datových_sad_s_podmínkami_0) ?počet_datových_sad_bez_podmínek_0 (0 AS ?počet_datových_sad_celkem_0)
+          WHERE {
+            ?pozorováníBezPodmínek a qb:Observation, dqv:QualityMeasurement ;
+                                dqv:computedOn ?poskytovatel ;
+                                sdmx-dimension:refPeriod ?period ;
+                                dqv:isMeasurementOf :PočetDatovýchSadSDistribucíBezPodmínekUžití ;
+                                dqv:value ?počet_datových_sad_bez_podmínek_0 .
+          }
+
+        } UNION {
+          SELECT ?poskytovatel ?period (0 AS ?procento_datových_sad_s_podmínkami_0) (0 AS ?počet_datových_sad_bez_podmínek_0) ?počet_datových_sad_celkem_0
+          WHERE {
+            ?pozorováníCelkem a qb:Observation, dqv:QualityMeasurement ;
+                                dqv:computedOn ?poskytovatel ;
+                                sdmx-dimension:refPeriod ?period ;
+                                dqv:isMeasurementOf :PočetDatovýchSad ;
+                                dqv:value ?počet_datových_sad_celkem_0 .
+
+          }
+
+        }
+
+      }
+      GROUP BY ?jméno_poskytovatele
+      HAVING (?počet_datových_sad_bez_podmínek > 0)
+      ORDER BY DESC(?procento) DESC(?počet_datových_sad_bez_podmínek) ?jméno_poskytovatele
+  - name: 
+      de: Anzahl der Datensätze, die die obligatorischen Attribute des Anbieters nicht erfüllen
+      en: Number of datasets missing mandatory attributes by provider
+      hu: A kötelező attribútumoknak nem megfelelő adatkészletek száma szolgáltatónként
+      sk: Počet datasetov nespĺňajúcich povinné atribúty podľa poskytovateľa
+      uk: Кількість наборів даних, які не відповідають обов’язковим атрибутам за постачальником
+    description:
+      de: Anzahl der Datensätze, die die obligatorischen Attribute des Anbieters nicht erfüllen
+      en: Number of datasets missing mandatory attributes by provider
+      hu: A kötelező attribútumoknak nem megfelelő adatkészletek száma szolgáltatónként
+      sk: Počet datasetov nespĺňajúcich povinné atribúty podľa poskytovateľa
+      uk: Кількість наборів даних, які не відповідають обов’язковим атрибутам за постачальником
+    query: |
+      PREFIX dcterms: <http://purl.org/dc/terms/>
+      PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
+      PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+      PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+      PREFIX dqv: <http://www.w3.org/ns/dqv#>
+      PREFIX qb: <http://purl.org/linked-data/cube#>
+      PREFIX sdmx-dimension: <http://purl.org/linked-data/sdmx/2009/dimension#>
+
+      PREFIX : <https://data.gov.sk/def/observation/data-quality/metrics/>
+
+      SELECT DISTINCT ?jméno_poskytovatele ?počet_datových_sad_nesplňujících
+      WHERE 
+      {
+        <https://data.gov.sk/set/catalog/nkod> dcterms:modified ?date .
+        BIND("http://reference.data.gov.uk/id/gregorian-day/" as ?datePrefix)
+        BIND(IRI(CONCAT(?datePrefix, STR(?date))) AS ?period)
+            
+        ?pozorování a qb:Observation, dqv:QualityMeasurement ;
+          dqv:computedOn ?poskytovatel ;
+          sdmx-dimension:refPeriod ?period ;
+          dqv:isMeasurementOf :PočetZáznamůDatovýchSadNesplňujícíchPovinnéAtributy ;
+          dqv:value ?počet_datových_sad_nesplňujících .
+        
+        ?poskytovatel foaf:name ?jméno_poskytovatele .
+        FILTER(?počet_datových_sad_nesplňujících > 0)
+      }
+      ORDER BY DESC(?počet_datových_sad_nesplňujících) ?jméno_poskytovatele
+  - name: 
+      de: Gesamtverteilungsdatenformate
+      en: Data formats of distributions in total
+      hu: Összes terjesztési adatformátumok
+      sk: Formáty dát distribúcií celkom
+      uk: Загальні формати даних розподілу
+    description:
+      de: Gesamtverteilungsdatenformate
+      en: Data formats of distributions in total
+      hu: Összes terjesztési adatformátumok
+      sk: Formáty dát distribúcií celkom
+      uk: Загальні формати даних розподілу
+    query: |
+      PREFIX dcterms: <http://purl.org/dc/terms/>
+      PREFIX dcat:    <http://www.w3.org/ns/dcat#>
+      PREFIX foaf:    <http://xmlns.com/foaf/0.1/>
+
+      SELECT ?mime_type (count (distinct ?distribuce) as ?počet_distribucí)
+      WHERE 
+      {
+        ?datová_sada a dcat:Dataset ; 
+        dcat:distribution ?distribuce . 
+
+        ?distribuce dcat:mediaType ?mime_type.
+      }
+      GROUP BY ?mime_type 
+      ORDER BY DESC(?počet_distribucí)
+  - name: 
+      de: Datenformate der Distributionen nach Anbieter
+      en: Data formats of distributions by provider
+      hu: A disztribúciók adatformátumai szolgáltatók szerint
+      sk: Formáty dát distribúcií podľa poskytovateľa
+      uk: Формати даних розповсюдження за провайдером
+    description:
+      de: Datenformate der Distributionen nach Anbieter
+      en: Data formats of distributions by provider
+      hu: A disztribúciók adatformátumai szolgáltatók szerint
+      sk: Formáty dát distribúcií podľa poskytovateľa
+      uk: Формати даних розповсюдження за провайдером
+    query: |
+      PREFIX dcterms: <http://purl.org/dc/terms/>
+      PREFIX dcat:    <http://www.w3.org/ns/dcat#>
+      PREFIX foaf:    <http://xmlns.com/foaf/0.1/>
+
+      SELECT ?jméno_poskytovatele (count (distinct ?distribuce) as ?počet_distribucí) ?mime_type
+      WHERE 
+      {
+        GRAPH ?g { ?datová_sada a dcat:Dataset ; 
+        dcterms:publisher ?poskytovatel ;
+        dcat:distribution ?distribuce . 
+
+          ?distribuce dcat:mediaType ?mime_type.
+
+          ?poskytovatel foaf:name ?jméno_poskytovatele .
+        }
+        FILTER(langMatches(LANG(?jméno_poskytovatele), "sk"))
+      }
+      GROUP BY ?poskytovatel ?jméno_poskytovatele ?mime_type
+      ORDER BY DESC(?počet_distribucí) ?mime_type
+  - name: 
+      de: Anzahl der Daten mit einem bestimmten Schlüsselwort
+      en: Numbers of datasets with a given keyword
+      hu: Egy adott kulcsszóhoz tartozó adatok száma
+      sk: Počty dát s daným kľúčovým slovom
+      uk: Підрахунок даних із заданим ключовим словом
+    description:
+      de: Anzahl der Daten mit einem bestimmten Schlüsselwort
+      en: Numbers of datasets with a given keyword
+      hu: Egy adott kulcsszóhoz tartozó adatok száma
+      sk: Počty dát s daným kľúčovým slovom
+      uk: Підрахунок даних із заданим ключовим словом
+    query: |
+      PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
+      PREFIX dqv: <http://www.w3.org/ns/dqv#>
+      PREFIX qb: <http://purl.org/linked-data/cube#>
+      PREFIX dcterms: <http://purl.org/dc/terms/>
+      PREFIX dcat:    <http://www.w3.org/ns/dcat#>
+
+      PREFIX : <https://data.gov.sk/def/observation/data-quality/metrics/>
+
+      SELECT ?klíčové_slovo (SUM(?výsledek) AS ?počet_datových_sad)
+      WHERE 
+      {
+        <https://data.gov.sk/set/catalog/nkod> dcterms:modified ?date .
+        BIND("http://reference.data.gov.uk/id/gregorian-day/" as ?datePrefix)
+        BIND(IRI(CONCAT(?datePrefix, STR(?date))) AS ?period)
+
+        ?pozorování a qb:Observation, dqv:QualityMeasurement ;
+            dqv:isMeasurementOf :PočetDatovýchSadSDanýmKlíčovýmSlovem ;
+
+            skos:note ?klíčové_slovo ;
+            dqv:value ?výsledek .
+      }
+      GROUP BY ?klíčové_slovo
+      ORDER BY DESC(?počet_datových_sad)
+  - name: 
+      de: Nutzungsbedingungen der Distributionen insgesamt
+      en: Terms of use of distributions in total
+      hu: A disztribúciók használati feltételei összesen
+      sk: Podmienky použitia distribúcií celkom
+      uk: Умови використання дистрибутивів в цілому
+    description:
+      de: Nutzungsbedingungen der Distributionen insgesamt
+      en: Terms of use of distributions in total
+      hu: A disztribúciók használati feltételei összesen
+      sk: Podmienky použitia distribúcií celkom
+      uk: Умови використання дистрибутивів в цілому
+    query: |
+      PREFIX dcterms: <http://purl.org/dc/terms/>
+      PREFIX dcat:    <http://www.w3.org/ns/dcat#>
+
+      PREFIX law: <https://data.gov.sk/def/ontology/law/>
+
+      SELECT (count (distinct ?distribuce) as ?počet_distribucí) ?autorskéDílo ?databáze ?zvláštníPrávo ?osobní_údaje
+      WHERE 
+      {
+        ?datová_sada a dcat:Dataset ; 
+        dcat:distribution ?distribuce . 
+
+      ?distribuce law:termsOfUse ?pu .
+
+          ?pu a law:TermsOfUse ;
+                      law:authorsWorkType ?autorskéDílo ;
+                      law:originalDatabaseType ?databáze ;
+                      law:databaseProtectedBySpecialRightsType ?zvláštníPrávo ;
+                      law:personalDataContainmentType ?osobní_údaje .
+      }
+      GROUP BY ?autorskéDílo ?databáze ?zvláštníPrávo ?osobní_údaje
+      ORDER BY DESC(?počet_distribucí) ?autorskéDílo ?databáze ?zvláštníPrávo ?osobní_údaje
