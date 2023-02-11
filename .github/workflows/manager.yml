@@ -1,4 +1,4 @@
-name: publish-scheduler
+name: publish-manager
 on:
   push:
     paths:
