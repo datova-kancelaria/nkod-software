@@ -137,7 +137,6 @@ content:
       PREFIX dqv: <http://www.w3.org/ns/dqv#>
       PREFIX qb: <http://purl.org/linked-data/cube#>
       PREFIX sdmx-dimension: <http://purl.org/linked-data/sdmx/2009/dimension#>
-
       PREFIX : <https://data.gov.sk/def/observation/data-quality/metrics/>
 
       SELECT ?jméno_poskytovatele (MAX(?procento_distribucí_nedostupných_0) AS ?procento_distribucí_nedostupných) (MAX(?počet_distribucí_se_souborem_nedostupných_0) AS ?počet_distribucí_se_souborem_nedostupných) (MAX(?počet_distribucí_se_souborem_celkem_0) AS ?počet_distribucí_se_souborem_celkem)
@@ -202,13 +201,13 @@ content:
       }
   - name: 
       de: Anzahl der Ausschüttungen ohne Angabe von Nutzungsbedingungen durch Anbieter
-      en: q1
+      en: Number of distributions without terms of use specified by provider
       hu: A disztribúciók száma a szolgáltató általi felhasználási feltételek megadása nélkül
       sk: Počet distribúcií bez uvedenia podmienok použitia podľa poskytovateľa
       uk: Кількість дистрибутивів без зазначення умов використання постачальником
     description:
       de: Anzahl der Ausschüttungen ohne Angabe von Nutzungsbedingungen durch Anbieter
-      en: q1
+      en: Number of distributions without terms of use specified by provider
       hu: A disztribúciók száma a szolgáltató általi felhasználási feltételek megadása nélkül
       sk: Počet distribúcií bez uvedenia podmienok použitia podľa poskytovateľa
       uk: Кількість дистрибутивів без зазначення умов використання постачальником
@@ -503,7 +502,7 @@ content:
         dcat:distribution ?distribuce . 
 
       ?distribuce law:termsOfUse ?pu .
-
+      
           ?pu a law:TermsOfUse ;
                       law:authorsWorkType ?autorskéDílo ;
                       law:originalDatabaseType ?databáze ;
