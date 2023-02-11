@@ -39,6 +39,8 @@ spec:
                     key: manager.pipelineRepository
               - name: STORAGE_URL
                 value: "http://nodc-storage:8083"
+              - name: STORAGE_REPOSITORY_BRANCH
+                value: "develop"
               - name: FRONTEND_URL
                 value: "http://nodc-frontend:8080"
               - name: PIPELINE_URL
@@ -46,11 +48,13 @@ spec:
                   configMapKeyRef:
                     name: nodc-configuration
                     key: manager.pipelineToExecute
-              - name: PIPELINE_REPOSITORY
+              - name: REGISTRATION_REPOSITORY
                 valueFrom:
                   configMapKeyRef:
                     name: nodc-configuration
                     key: manager.registrationRepository
+              - name: REGISTRATION_REPOSITORY_BRANCH
+                value: "develop"
             volumeMounts:
               - mountPath: "/data/lp-etl/"
                 name: nodc-linkedpipes-volume
