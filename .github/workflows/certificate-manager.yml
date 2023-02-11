@@ -5,6 +5,7 @@ on:
       - "components/certificate-manager/**"
     branches:
       - 'main'
+      - 'develop'
 jobs:
   publish:
     runs-on: ubuntu-20.04
