@@ -1,4 +1,4 @@
-# Certificate manager
+# Component: Certificate manager
 Wraps Certbot to tackle issues with data sharing.
 Certbot write data to /etc/letsencrypt yet it need to create a lock.
 Locks are not available on NFS, like Kubernetes File Systems.

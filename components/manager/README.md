@@ -1,4 +1,4 @@
-# Manager 
+# Component:  Manager 
 Manager manager harvesting.
 This component should be executed automatically in required time.
 
