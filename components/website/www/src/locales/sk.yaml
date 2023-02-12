@@ -2,7 +2,7 @@ html:
   language: sk
   title: data.gov.sk/sparql
 header:  
-  gestor: znalosti.gov.sk
+  gestor: opendata.mirri.tech
   headline: SPARQL Endpoint pre Národný katalóg otvorených dát
   open-lang-menu: Rozbaliť jazykové menu
   close-lang-menu: Skryť jazykové menu
