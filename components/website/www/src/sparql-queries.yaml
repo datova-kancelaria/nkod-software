@@ -511,3 +511,30 @@ content:
       }
       GROUP BY ?autorskéDílo ?databáze ?zvláštníPrávo ?osobní_údaje
       ORDER BY DESC(?počet_distribucí) ?autorskéDílo ?databáze ?zvláštníPrávo ?osobní_údaje
+  - name: 
+      de: Liste hochwertiger Datensätze (HVD)
+      en: List of High Value Datasets (HVD)
+      hu: A nagy értékű adatkészletek listája (HVD)
+      sk: Zoznam datasetov s vysokou hodnotou (HVD)
+      uk: Список високоцінних наборів даних (HVD)
+    description:
+      de: Liste hochwertiger Datensätze (HVD)
+      en: List of High Value Datasets (HVD)
+      hu: A nagy értékű adatkészletek listája (HVD)
+      sk: Zoznam datasetov s vysokou hodnotou (HVD)
+      uk: Список високоцінних наборів даних (HVD)
+    query: |
+      PREFIX foaf: <http://xmlns.com/foaf/0.1/>
+      PREFIX dcterms: <http://purl.org/dc/terms/>
+      PREFIX dcat: <http://www.w3.org/ns/dcat#>
+      PREFIX type: <http://publications.europa.eu/resource/authority/dataset-type/>
+
+      SELECT DISTINCT ?dataset ?meno_poskytovateľa
+      WHERE {
+        ?dataset a dcat:Dataset ;
+          dcterms:type type:HVD ;
+          dcterms:publisher ?poskytovateľ .
+        ?poskytovateľ foaf:name ?meno_poskytovateľa .
+        FILTER(langMatches(LANG(?meno_poskytovateľa), "sk"))
+      }
+      LIMIT 100
