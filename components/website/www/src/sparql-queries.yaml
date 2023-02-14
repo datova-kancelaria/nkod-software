@@ -529,12 +529,14 @@ content:
       PREFIX dcat: <http://www.w3.org/ns/dcat#>
       PREFIX type: <http://publications.europa.eu/resource/authority/dataset-type/>
 
-      SELECT DISTINCT ?dataset ?meno_poskytovateľa
+      SELECT DISTINCT ?názov_datasetu ?meno_poskytovateľa
       WHERE {
         ?dataset a dcat:Dataset ;
+          dcterms:title ?názov_datasetu ;
           dcterms:type type:HVD ;
           dcterms:publisher ?poskytovateľ .
         ?poskytovateľ foaf:name ?meno_poskytovateľa .
+        FILTER(langMatches(LANG(?názov_datasetu), "sk"))
         FILTER(langMatches(LANG(?meno_poskytovateľa), "sk"))
       }
       LIMIT 100
