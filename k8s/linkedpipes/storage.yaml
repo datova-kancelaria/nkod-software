@@ -52,6 +52,7 @@ apiVersion: v1
 kind: Service
 metadata:
   name: nodc-storage
+  namespace: nodc
   labels:
     app.kubernetes.io/name: nodc
     app.kubernetes.io/component: linkedpipes.storage
