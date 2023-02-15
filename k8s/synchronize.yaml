@@ -19,7 +19,7 @@ spec:
             claimName: nodc-registration-pvc
       containers:
       - name: nodc-linkedpipes-executor
-        image: ghcr.io/datova-kancelaria/nodc_manager:develop
+        image: ghcr.io/datova-kancelaria/nodc_manager:main
         args: ["./update.sh"]
         imagePullPolicy: Always
         env:
@@ -31,7 +31,7 @@ spec:
           - name: STORAGE_URL
             value: "http://nodc-storage:8083"
           - name: STORAGE_REPOSITORY_BRANCH
-            value: "develop"
+            value: "main"
           - name: FRONTEND_URL
             value: "http://nodc-frontend:8080"
           - name: PIPELINE_URL
@@ -45,7 +45,7 @@ spec:
                 name: nodc-configuration
                 key: manager.registrationRepository
           - name: REGISTRATION_REPOSITORY_BRANCH
-            value: "develop"
+            value: "main"
           - name: DO_NOT_START_PIPELINE
             value: "true"
         volumeMounts:
