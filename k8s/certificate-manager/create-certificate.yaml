@@ -1,0 +1,46 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: nodc-certificate-create-job
+  namespace: nodc
+  labels:
+    app.kubernetes.io/name: nodc
+    app.kubernetes.io/component: certificate-manager    
+spec:
+  backoffLimit: 0
+  template:
+    metadata:
+      namespace: nodc
+      # We need this pod to be selected instead of website so it can use
+      # HTTP based validation of domain ownership.
+      labels:
+        app.kubernetes.io/name: nodc
+        app.kubernetes.io/component: website
+        app.kubernetes.io/part-of: certificate-manager
+    spec:
+      volumes:
+        - name: nodc-certificate
+          persistentVolumeClaim:
+            claimName: nodc-certificate-pvc
+      containers:
+        - name: certificate-manager
+          image: ghcr.io/datova-kancelaria/nodc_certificate-manager:main
+          args: ["./create.sh"]
+          imagePullPolicy: Always
+          ports:
+            - containerPort: 80
+          volumeMounts:
+            - name: nodc-certificate
+              mountPath: /opt/letsencrypt/
+          env:
+            - name: EMAIL
+              valueFrom:
+                configMapKeyRef:
+                  name: nodc-configuration
+                  key: letsencrypt.email
+            - name: DOMAIN
+              valueFrom:
+                configMapKeyRef:
+                  name: nodc-configuration
+                  key: letsencrypt.domain
+      restartPolicy: Never
