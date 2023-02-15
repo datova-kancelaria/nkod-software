@@ -1,11 +1,11 @@
 apiVersion: batch/v1
 kind: Job
 metadata:
-  name: nodc-certificate-initialize-job
+  name: nodc-synchronize-job
   namespace: nodc
   labels:
     app.kubernetes.io/name: nodc
-    app.kubernetes.io/component: certificate-manager    
+    app.kubernetes.io/component: manager
 spec:
   backoffLimit: 0
   template:
