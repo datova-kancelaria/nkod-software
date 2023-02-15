@@ -16,3 +16,4 @@ Execution of this image include:
 * *PIPELINE_URL* - IRI of a pipeline from STORAGE_REPOSITORY* to execute.
 * *REGISTRATION_REPOSITORY* - URL of repository with registrations.
 * *REGISTRATION_REPOSITORY_BRANCH* - Branch to use for registration.
+* *DO_NOT_START_PIPELINE* - If set pipeline execution is not started.

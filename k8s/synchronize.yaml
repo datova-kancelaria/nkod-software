@@ -1,0 +1,72 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: nodc-certificate-initialize-job
+  namespace: nodc
+  labels:
+    app.kubernetes.io/name: nodc
+    app.kubernetes.io/component: certificate-manager    
+spec:
+  backoffLimit: 0
+  template:
+    spec:
+      volumes:
+        - name: nodc-linkedpipes-volume
+          persistentVolumeClaim:
+            claimName: nodc-linkedpipes-storage-pvc
+        - name: nodc-registration-volume
+          persistentVolumeClaim:
+            claimName: nodc-registration-pvc
+      containers:
+      - name: nodc-linkedpipes-executor
+        image: ghcr.io/datova-kancelaria/nodc_manager:develop
+        args: ["./update.sh"]
+        imagePullPolicy: Always
+        env:
+          - name: STORAGE_REPOSITORY
+            valueFrom:
+              configMapKeyRef:
+                name: nodc-configuration
+                key: manager.pipelineRepository
+          - name: STORAGE_URL
+            value: "http://nodc-storage:8083"
+          - name: STORAGE_REPOSITORY_BRANCH
+            value: "develop"
+          - name: FRONTEND_URL
+            value: "http://nodc-frontend:8080"
+          - name: PIPELINE_URL
+            valueFrom:
+              configMapKeyRef:
+                name: nodc-configuration
+                key: manager.pipelineToExecute
+          - name: REGISTRATION_REPOSITORY
+            valueFrom:
+              configMapKeyRef:
+                name: nodc-configuration
+                key: manager.registrationRepository
+          - name: REGISTRATION_REPOSITORY_BRANCH
+            value: "develop"
+          - name: DO_NOT_START_PIPELINE
+            value: "true"
+        volumeMounts:
+          - mountPath: "/data/lp-etl/"
+            name: nodc-linkedpipes-volume
+          - mountPath: "/data/registration/"
+            name: nodc-registration-volume
+      restartPolicy: OnFailure
+      initContainers:
+        - name: set-storage-ownership
+          image: alpine:3.17.0
+          command: ["chown", "5987:5987", "/data/lp-etl/"]
+          volumeMounts:
+            - mountPath: "/data/lp-etl/"
+              name: nodc-linkedpipes-volume
+        - name: set-registration-ownership
+          image: alpine:3.17.0
+          command:
+            - "chown"
+            - "5987:5987"
+            - "/data/registration/"
+          volumeMounts:
+            - mountPath: "/data/registration/"
+              name: nodc-registration-volume
