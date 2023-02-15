@@ -2,7 +2,7 @@ html:
   language: uk
   title: data.gov.sk/sparql
 header:  
-  gestor: znalosti.gov.sk
+  gestor: opendata.mirri.tech
   headline: Кінцева точка SPARQL для Національного каталогу відкритих даних
   open-lang-menu: Розгорніть меню мови
   close-lang-menu: Сховати меню мови

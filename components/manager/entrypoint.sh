@@ -18,12 +18,13 @@ git config --global --add safe.directory /data/registration/repository
 
 cd /data/registration/repository
 [ ! -d ".git" ] \
-  && echo "Clone registration repository $PIPELINE_REPOSITORY" \
-  && git clone $PIPELINE_REPOSITORY ./
+  && echo "Clone registration repository $REGISTRATION_REPOSITORY" \
+  && git clone $REGISTRATION_REPOSITORY ./
 
 echo "Update registration data"
 git fetch --all
 git reset --hard HEAD
+git checkout $REGISTRATION_REPOSITORY_BRANCH
 git pull
 
 #
@@ -33,7 +34,7 @@ git pull
 echo "Clone pipeline and templates definitions"
 mkdir -p /tmp/storage/
 cd /tmp/storage/
-git clone $STORAGE_REPOSITORY ./
+git clone --branch $STORAGE_REPOSITORY_BRANCH $STORAGE_REPOSITORY ./
 
 echo "Move data to storage directory"
 cp -r ./pipelines /data/lp-etl/storage/

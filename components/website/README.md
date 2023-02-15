@@ -1,4 +1,4 @@
-# Website
+# Component:  Website
 This component provide web-page with SPARQL query editor and act as a gateway to other services and resources.
 As such this component compose of a web-application, the query editor, located in ```www``` directory and NginX configuration.
 NginX is used to serve static content and works as reverse proxy.
