@@ -4,8 +4,13 @@ set -e
 
 echo "New update run started: $(date)" 
 
-mv /opt/letsencrypt /etc/letsencrypt 
+cp -rf /opt/letsencrypt /etc/letsencrypt 
+
+echo "Executing certbot"
 
 certbot certonly renew -q
 
-mv /etc/letsencrypt /opt/letsencrypt
+echo "Listing content of /opt/letsencrypt"
+ls -R /opt/letsencrypt
+
+cp -rf /etc/letsencrypt /opt/letsencrypt
