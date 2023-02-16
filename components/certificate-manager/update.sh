@@ -4,13 +4,11 @@ set -e
 
 echo "New update run started: $(date)" 
 
+echo "Creating local copy of data"
 cp -rf /opt/letsencrypt /etc/letsencrypt 
 
 echo "Executing certbot"
-
 certbot certonly renew -q
 
-echo "Listing content of /opt/letsencrypt"
-ls -R /opt/letsencrypt
-
+echo "Publishing data"
 cp -rf /etc/letsencrypt /opt/letsencrypt
