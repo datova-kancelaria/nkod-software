@@ -61,13 +61,13 @@ content:
       de: Anzahl der Datensätze pro Herausgeber
       en: Numbers of datasets per publisher
       hu: Adatkészletek száma kiadónként
-      sk: Počet datasetov na poskytovateľa
+      sk: Počet datasetov podľa poskytovateľa
       uk: Кількість наборів даних на видавця
     description:
       de: Anzahl der Datensätze pro Herausgeber
       en: Numbers of datasets per publisher
       hu: Adatkészletek száma kiadónként
-      sk: Počet datasetov na poskytovateľa
+      sk: Počet datasetov podľa poskytovateľa
       uk: Кількість наборів даних на видавця
     query: |
       PREFIX dcat: <http://www.w3.org/ns/dcat#>
@@ -139,7 +139,7 @@ content:
       PREFIX sdmx-dimension: <http://purl.org/linked-data/sdmx/2009/dimension#>
       PREFIX : <https://data.gov.sk/def/observation/data-quality/metrics/>
 
-      SELECT ?meno_poskytovateľa (MAX(?percento_distribúcií_nedostupných_0) AS ?percento_distribúcií_nedostupných) (MAX(?počet_distribúcií_se_souborem_nedostupných_0) AS ?počet_distribúcií_se_souborem_nedostupných) (MAX(?počet_distribúcií_se_souborem_celkom_0) AS ?počet_distribúcií_se_souborem_celkom)
+      SELECT ?meno_poskytovateľa (MAX(?percento_distribúcií_nedostupných_0) AS ?percento_distribúcií_nedostupných) (MAX(?počet_distribúcií_so_súborom_nedostupných_0) AS ?počet_distribúcií_so_súborom_nedostupných) (MAX(?počet_distribúcií_so_súborom_celkom_0) AS ?počet_distribúcií_so_súborom_celkom)
       WHERE 
       {
         <https://data.gov.sk/set/catalog/nkod> dcterms:modified ?date .
@@ -150,7 +150,7 @@ content:
         FILTER(BOUND(?meno_poskytovateľa) && langMatches(LANG(?meno_poskytovateľa), "sk"))
 
         {
-          SELECT ?poskytovateľ ?perióda (0 AS ?počet_distribúcií_se_souborem_celkom_0) (0 AS ?počet_distribúcií_se_souborem_nedostupných_0) ?percento_distribúcií_nedostupných_0
+          SELECT ?poskytovateľ ?perióda (0 AS ?počet_distribúcií_so_súborom_celkom_0) (0 AS ?počet_distribúcií_so_súborom_nedostupných_0) ?percento_distribúcií_nedostupných_0
           WHERE {
             [] a qb:Observation, dqv:QualityMeasurement ;
                                 dqv:computedOn ?poskytovateľ ;
@@ -159,28 +159,28 @@ content:
                                 dqv:value ?percento_distribúcií_nedostupných_0 .
           }
         } UNION {
-          SELECT ?poskytovateľ ?perióda (0 AS ?počet_distribúcií_se_souborem_celkom_0) ?počet_distribúcií_se_souborem_nedostupných_0 (0 AS ?percento_distribúcií_nedostupných_0)
+          SELECT ?poskytovateľ ?perióda (0 AS ?počet_distribúcií_so_súborom_celkom_0) ?počet_distribúcií_so_súborom_nedostupných_0 (0 AS ?percento_distribúcií_nedostupných_0)
           WHERE {
             [] a qb:Observation, dqv:QualityMeasurement ;
                                 dqv:computedOn ?poskytovateľ ;
                                 sdmx-dimension:refPeriod ?perióda ;
                                 dqv:isMeasurementOf :PočetDistribucíDatovýchSadSNedostupnýmSouboremKeStažení ;
-                                dqv:value ?počet_distribúcií_se_souborem_nedostupných_0 .
+                                dqv:value ?počet_distribúcií_so_súborom_nedostupných_0 .
           }
         } UNION {
-          SELECT ?poskytovateľ ?perióda ?počet_distribúcií_se_souborem_celkom_0 (0 AS ?počet_distribúcií_se_souborem_nedostupných_0) (0 AS ?percento_distribúcií_nedostupných_0)
+          SELECT ?poskytovateľ ?perióda ?počet_distribúcií_so_súborom_celkom_0 (0 AS ?počet_distribúcií_so_súborom_nedostupných_0) (0 AS ?percento_distribúcií_nedostupných_0)
           WHERE {
             [] a qb:Observation, dqv:QualityMeasurement ;
                                 dqv:computedOn ?poskytovateľ ;
                                 sdmx-dimension:refPeriod ?perióda ;
                                 dqv:isMeasurementOf :PočetDistribucíDatovýchSadSouborKeStažení ;
-                                dqv:value ?počet_distribúcií_se_souborem_celkom_0 .
+                                dqv:value ?počet_distribúcií_so_súborom_celkom_0 .
           }
         }  
       }
       GROUP BY ?meno_poskytovateľa
-      HAVING(?počet_distribúcií_se_souborem_nedostupných > 0)
-      ORDER BY DESC(?percento_distribúcií_nedostupných) DESC(?počet_distribúcií_se_souborem_nedostupných) ?meno_poskytovateľa
+      HAVING(?počet_distribúcií_so_súborom_nedostupných > 0)
+      ORDER BY DESC(?percento_distribúcií_nedostupných) DESC(?počet_distribúcií_so_súborom_nedostupných) ?meno_poskytovateľa
   - name: 
       de: Anzahl der Datensätze in NKOD
       en: Number of datasets in NKOD
