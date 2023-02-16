@@ -54,8 +54,8 @@ curl -X POST "$STORAGE_URL/api/v1/management/reload"
 # This may actually fail for the first time as the storage
 # do not reload data on demand.
 if [[ -z "${DO_NOT_START_PIPELINE}" ]]; then
-  echo "Skipping pipeline execution"
-else
   echo "Start pipeline"
-  curl -X POST "$FRONTEND_URL/api/v1/executions?pipeline=$PIPELINE_URL"
+  curl -X POST "$FRONTEND_URL/api/v1/executions?pipeline=$PIPELINE_URL"  
+else
+  echo "Skipping pipeline execution"
 fi
