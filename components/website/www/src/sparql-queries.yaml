@@ -540,24 +540,3 @@ content:
         FILTER(langMatches(LANG(?meno_poskytovateľa), "sk"))
       }
       LIMIT 100
-  - name: 
-      de: NOVY
-      en: NOVY
-      hu: NOVY
-      sk: NOVY
-      uk: NOVY
-    description:
-      de: NOVY
-      en: NOVY
-      hu: NOVY
-      sk: NOVY
-      uk: NOVY
-    query: |
-      PREFIX dcterms: <http://purl.org/dc/terms/>
-      PREFIX dcat: <http://www.w3.org/ns/dcat#>
-      SELECT (COUNT (*) AS ?počet)
-      WHERE {
-        ?dataset a dcat:Dataset ;
-          dcterms:title ?názov .
-        FILTER(STRSTARTS(STR(?názov), "A"))
-      }
