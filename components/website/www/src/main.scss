@@ -1,0 +1,40 @@
+$idsk-assets-path: "../assets/id-sk/";
+$govuk-assets-path: "../assets/id-sk/";
+
+@import "@id-sk/frontend/idsk/all.scss";
+@import "@id-sk/frontend/idsk/overrides/_colours-applied.scss";
+
+#queries {
+  list-style-type: none;
+  padding-inline-start: 0;
+  height: 20rem;
+  overflow-y: auto;
+
+  li {
+    margin: 1rem;
+
+    .name {
+      cursor: pointer;
+      color: $govuk-link-colour;
+    }
+
+  }
+
+}
+
+/* Hide UI components. */
+.yasgui {
+
+  .autocompleteWrapper {
+    display: none !important;
+  }
+
+  .controlbar {
+    display: none !important;
+  }
+
+  .yasr_tryQuery {
+    display: none !important;
+  }
+  
+}
