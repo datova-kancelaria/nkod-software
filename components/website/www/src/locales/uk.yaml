@@ -2,7 +2,7 @@ html:
   language: uk
   title: data.gov.sk/sparql
 header:  
-  gestor: opendata.mirri.tech
+  gestor: data.gov.sk/sparql
   headline: Кінцева точка SPARQL для Національного каталогу відкритих даних
   open-lang-menu: Розгорніть меню мови
   close-lang-menu: Сховати меню мови
@@ -14,6 +14,13 @@ main:
   query-examples: Приклади запитів
   enter-sparql-query: Введіть запит SPARQL
 footer:
-  report-issue: Ви знайшли помилку на сторінці?
-  contact-us: Зв'яжіться з нами
   back-to-top: Догори
+  report-issue: Ви знайшли помилку?
+  technical-support: Технічна підтримка
+  operator: Сервісом керує
+  operator-name: Міністерство інвестицій, регіонального розвитку та інформатизації Словацької Республіки
+  created-in-accordance: Створено відповідно до
+  design-manual: Уніфікований посібник з проектування електронних послуг
+  created-in-accordance-post: .
+  is-component-of: Кінцева точка SPARQL є частиною проекту
+  source: Вихідний код

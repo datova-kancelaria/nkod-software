@@ -2,7 +2,7 @@ html:
   language: hu
   title: data.gov.sk/sparql
 header:  
-  gestor: opendata.mirri.tech
+  gestor: data.gov.sk/sparql
   headline: SPARQL végpont a Nemzeti Nyílt Adatkatalógushoz
   open-lang-menu: Bontsa ki a nyelv menüt
   close-lang-menu: Nyelv menü elrejtése
@@ -14,6 +14,13 @@ main:
   query-examples: Példák a lekérdezésekre
   enter-sparql-query: Adjon meg egy SPARQL-lekérdezést
 footer:
-  report-issue: Hibát találtál az oldalon?
-  contact-us: Lépjen kapcsolatba velünk
   back-to-top: Vissza a tetejére
+  report-issue: Talált hibát?
+  technical-support: Technikai támogatás
+  operator: A szolgáltatást a
+  operator-name: Szlovák Köztársaság Beruházási, Területfejlesztési és Informatizálási Minisztériuma üzemelteti
+  created-in-accordance: Az 
+  design-manual: Elektronikus szolgáltatások egységes tervezési kézikönyv
+  created-in-accordance-post: szerint készült.
+  is-component-of: A SPARQL Endpoint a projekt része
+  source: Forráskód
