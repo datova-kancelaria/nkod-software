@@ -2,17 +2,13 @@
   "name": "sk-nodc-website",
   "browserslist": "> 0.5%, last 2 versions, not dead",
   "source": [
-    "./i18n/index.html",
-    "./i18n/de/index.html",
-    "./i18n/en/index.html",
-    "./i18n/hu/index.html",
-    "./i18n/uk/index.html"
+    "./src/index.html"
   ],
   "scripts": {
     "start": "parcel",
-    "assets": "copy-files-from-to",
-    "i18n": "static-i18n -l sk -i sk -i de -i en -i hu -i uk --fileFormat yaml src",
-    "build": "parcel build --no-source-maps && node postbuild.js"
+    "postinstall": "copy-files-from-to",
+    "i18n": "static-i18n -l sk -i sk -i de -i en -i hu -i uk --fileFormat yaml --localesPath ./locales/ --outputDir ./dist ./dist",
+    "build": "parcel build --no-source-maps"
   },
   "devDependencies": {
     "@id-sk/frontend": "^2.10.0",
@@ -30,16 +26,12 @@
   },
   "copyFiles": [
     {
-      "from": "/assets/**/*",
-      "to": "./src/assets/"
-    },
-    {
       "from": "./node_modules/@id-sk/frontend/govuk/assets/**/*",
-      "to": "./src/assets/"
+      "to": "./assets/id-sk/"
     },
     {
       "from": "./node_modules/@id-sk/frontend/idsk/assets/**/*",
-      "to": "./src/assets"
+      "to": "./assets/id-sk/"
     }
   ]
 }

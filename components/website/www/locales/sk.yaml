@@ -2,7 +2,7 @@ html:
   language: sk
   title: data.gov.sk/sparql
 header:  
-  gestor: opendata.mirri.tech
+  gestor: data.gov.sk/sparql
   headline: SPARQL Endpoint pre Národný katalóg otvorených dát
   open-lang-menu: Rozbaliť jazykové menu
   close-lang-menu: Skryť jazykové menu
@@ -14,6 +14,13 @@ main:
   query-examples: Príklady dotazov
   enter-sparql-query: Zadaj SPARQL dotaz
 footer:
-  report-issue: Našli ste na stránke chybu?
-  contact-us: Napíšte nám
   back-to-top: Hore
+  report-issue: Našli ste chybu?
+  technical-support: Technická podpora
+  operator: Prevádzkovateľom služby je
+  operator-name: Ministerstvo investícií, regionálneho rozvoja a informatizácie SR
+  created-in-accordance: Vytvorené v súlade s
+  design-manual: Jednotným dizajn manuálom elektronických služieb
+  created-in-accordance-post: .
+  is-component-of: SPARQL Endpoint je súčasťou projektu
+  source: Zdrojový kód

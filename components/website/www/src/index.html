@@ -4,9 +4,11 @@
 <head>
   <meta charset="utf-8" />
   <title data-t>html.title</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="shortcut icon" type="image/x-icon" href="../assets/images/favicon.ico">
   <link href="../libs/yasgui.min.css" rel="stylesheet" type="text/css" />
   <script src="../libs/yasgui.min.js"></script>
-  <link rel="stylesheet" href="../src/styles.scss" />
+  <link rel="stylesheet" href="../src/main.scss" />
 </head>
 
 <body class="govuk-template__body">
@@ -122,48 +124,82 @@
   </main>
 
   <div data-module="idsk-footer-extended">
-    <footer class="idsk-footer-extended  idsk-footer-extended--up-button-enabled ">
+
+    <footer class="idsk-footer-extended idsk-footer-extended--up-button-enabled">
 
       <div class="idsk-footer-extended-up-button-div" id="footer-extended-up-button">
         <div class="govuk-width-container">
           <div class="govuk-grid-column-full">
-            <a href="#" role="button" draggable="false" 
-            class="idsk-button idsk-button--start idsk-footer-extended-up-button-a" data-module="idsk-button">
+            <a href="#" role="button" draggable="false" class="idsk-button idsk-button--start idsk-footer-extended-up-button-a" data-module="idsk-button">
               <svg class="idsk-footer-extended__up-button-svg" width="20" height="15" viewbox="0 0 20 15" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M10 5.5984L0 15L0 9.40174L10 0L10 5.5984Z" fill="white" />
-                <path opacity="0.5" fill-rule="evenodd" clip-rule="evenodd" d="M20 9.4016L10 0V5.59826L20 15V9.4016Z" fill="white" />
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M10 5.5984L0 15L0 9.40174L10 0L10 5.5984Z" fill="white"/>
+                <path opacity="0.5" fill-rule="evenodd" clip-rule="evenodd" d="M20 9.4016L10 0V5.59826L20 15V9.4016Z" fill="white"/>
               </svg>
-              <span data-t>footer.back-to-top</span>              
+              <span data-t>footer.back-to-top</span>
             </a>
           </div>
         </div>
       </div>
       
-      <div class="idsk-footer-extended-feedback">
+      <div class="idsk-footer-extended-main-content">
         <div class="govuk-width-container">
-          <div id="idsk-footer-extended-feedback" class="idsk-footer-extended-feedback-text">
-            <div class="idsk-footer-extended-feedback-container">
-              <div id="idsk-footer-extended-info-question">
-                <div class="govuk-grid-column-one-third idsk-footer-extended-usefull-question idsk-footer-extended-white-border">
-                  <div class="idsk-footer-extended-feedback-question-info-usefull">
-                    <a id="idsk-footer-extended-error-button" 
-                      href="https://github.com/datova-kancelaria/nkod-software/issues"
-                      class="idsk-footer-extended-feedback-text-answers idsk-footer-extended-help-button" data-t>footer.report-issue</a>
-                  </div>
-                  <div class="idsk-footer-extended-usefull-question-mobile ">
-                    <span data-t>footer.report-issue</span>
-                    <a id="idsk-footer-extended-write-us-button" 
-                      href="https://github.com/datova-kancelaria/nkod-software/issues"
-                      class="idsk-footer-extended-write-us-button idsk-footer-extended-feedback-text-answers idsk-footer-extended-help-button" data-t>footer.contact-us</a>
-                  </div>
-                </div>
+          <div class="govuk-grid-column-full">
+            <div class="idsk-footer-extended-description-panel">
+              
+              <!-- <div class="idsk-footer-extended-meta-item"> </div> -->
+
+              <div class="govuk-grid-column-two-thirds idsk-footer-extended-info-links">
+                
+                <p class="idsk-footer-extended-frame">
+                  <span data-t>footer.operator</span>
+                  <a target="_blank" rel="noopener noreferrer" href="https://www.mirri.gov.sk/"  data-attr-t title-t="footer.operator-name" data-t>footer.operator-name</a>
+                  .
+                </p>
+
+                <p class="idsk-footer-extended-frame">
+                  <span data-t>footer.created-in-accordance</span>
+                  <a class="govuk-link" target="_blank" rel="noopener noreferrer" href="https://idsk.gov.sk/" data-attr-t title-t="footer.design-manual" data-t>footer.design-manual</a>
+                  <span data-t>footer.created-in-accordance-post</span>
+                </p>
+
+                <ul class="idsk-footer-extended-inline-list ">       
+
+                  <li class="idsk-footer-extended-inline-list-item">
+                    <a class="govuk-link" target="_blank" rel="noopener noreferrer" href="https://github.com/datova-kancelaria/nkod-software/issues" data-attr-t title-t="footer.report-issue" data-t>footer.report-issue</a>
+                  </li>
+
+                  <li class="idsk-footer-extended-inline-list-item">
+                    <a class="govuk-link" target="_blank" rel="noopener noreferrer" href="https://wiki.vicepremier.gov.sk/pages/viewpage.action?pageId=101821736" data-attr-t title-t="footer.technical-support" data-t>footer.technical-support</a>
+                  </li>
+
+                  <li class="idsk-footer-extended-inline-list-item">
+                    <a class="govuk-link" target="_blank" rel="noopener noreferrer" href="https://github.com/datova-kancelaria/nkod-software" data-attr-t title-t="footer.source" data-t>footer.source</a>
+                  </li>
+
+                </ul>
+
               </div>
+
+              <div class="govuk-grid-column-one-third idsk-footer-extended-logo-box">
+                <p>
+                  <span data-t>footer.is-component-of</span>
+                  <a href="https://www.mirri.gov.sk/projekty/projekty-esif/operacny-program-integrovana-infrastruktura/prioritna-os-7-informacna-spolocnost/projekty/otvorene-udaje-2-0/index.html"
+                    target="_blank" rel="noopener noreferrer" title="Otvorené údaje 2.0 - Rozvoj centrálnych komponentov pre kvalitné zabezpečenie otvorených údajov">
+                    Otvorené údaje 2.0 - Rozvoj centrálnych komponentov pre kvalitné zabezpečenie otvorených údajov
+                  </a>
+                </p>
+                <img class="idsk-footer-extended-logo" 
+                  src="../assets/images/infra_logo_sk.png" 
+                  alt="EURÓPSKA ÚNIA Európske štrukturálne a investičné fondy OP Integrovaná infraštruktúra 2014 – 2020">
+              </div>
+
             </div>
           </div>
         </div>
       </div>
 
     </footer>
+
   </div>
 
   <script type="module" src="../src/main.js"></script>

@@ -2,7 +2,7 @@ html:
   language: en
   title: data.gov.sk/sparql
 header:  
-  gestor: opendata.mirri.tech
+  gestor: data.gov.sk/sparql
   headline: SPARQL Endpoint for the National Open Data Catalog
   open-lang-menu: Expand the language menu
   close-lang-menu: Hide language menu
@@ -14,6 +14,13 @@ main:
   query-examples: Examples of queries
   enter-sparql-query: Enter a SPARQL query
 footer:
-  report-issue: Did you find an error on the page?
-  contact-us: Contact us
   back-to-top: Back to top
+  report-issue: Did you find an error? 
+  technical-support: Technical support
+  operator: The service is operated by the 
+  operator-name: Ministry of Investments, Regional Development and Informatization of the Slovak Republic
+  created-in-accordance: Created in accordance with the
+  design-manual: Unified Design Manual of Electronic Services
+  created-in-accordance-post: .
+  is-component-of: SPARQL Endpoint is part of the project
+  source: Source code
