@@ -20,7 +20,7 @@ spec:
     spec:
       containers:
         - name: nodc-linkedpipes-frontend
-          image: linkedpipes/etl-frontend:main
+          image: ghcr.io/linkedpipes/etl-frontend:2023-03-17
           imagePullPolicy: Always
           env:
             - name: LP_ETL_DOMAIN
