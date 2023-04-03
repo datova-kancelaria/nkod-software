@@ -30,7 +30,7 @@ spec:
             claimName: nodc-website-pvc
       containers:
         - name: nodc-linkedpipes-executor
-          image: ghcr.io/linkedpipes/etl-executor:2023-03-17
+          image: ghcr.io/linkedpipes/etl-executor:2023-04-03
           imagePullPolicy: Always
           env:
             - name: LP_ETL_DOMAIN
@@ -63,7 +63,7 @@ spec:
             runAsGroup: 5987
             runAsNonRoot: true
         - name: nodc-linkedpipes-executor-monitor
-          image: ghcr.io/linkedpipes/etl-executor-monitor:2023-03-17
+          image: ghcr.io/linkedpipes/etl-executor-monitor:2023-04-03
           imagePullPolicy: Always
           env:
             - name: LP_ETL_DOMAIN
