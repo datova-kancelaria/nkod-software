@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: nodc-linkedpipes-private
+  name: nodc-graphdb-private
   namespace: nodc
   labels:
     app.kubernetes.io/name: nodc
@@ -14,7 +14,7 @@ spec:
   ports:
   - name: http
     port: 80
-    targetPort: 8080
+    targetPort: 7200
   selector:
     app.kubernetes.io/name: nodc
     app.kubernetes.io/component: graphdb
