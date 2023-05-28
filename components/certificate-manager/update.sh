@@ -8,7 +8,7 @@ echo "Creating local copy of data"
 cp -rf /opt/letsencrypt /etc/letsencrypt 
 
 echo "Executing certbot"
-certbot certonly renew -q
+certbot renew -q
 
 echo "Publishing data"
 cp -rf /etc/letsencrypt /opt/letsencrypt
